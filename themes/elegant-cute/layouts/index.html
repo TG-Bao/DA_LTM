@@ -5,12 +5,12 @@
         <div class="hero-text">
             <h1 class="hero-title">
                 Chào mừng đến với 
-                <span class="gradient-text">TiiBii Blog</span>
+                <span class="gradient-text">Blog Java & JavaScript</span>
                 <i class="fas fa-code cute-icon" style="color: var(--secondary); margin-left: 10px;"></i>
             </h1>
             <p class="hero-description">
-                Nơi chia sẻ kiến thức về Java và JavaScript - hai ngôn ngữ lập trình mạnh mẽ nhất hiện nay. 
-                Từ cơ bản đến nâng cao, từ backend đến frontend.
+                Nơi chia sẻ kiến thức về Java và JavaScript - từ cơ bản đến nâng cao, 
+                từ backend đến frontend. Học lập trình web chưa bao giờ dễ dàng đến thế!
             </p>
             <div class="hero-buttons">
                 <a href="/DA_LTM/blog/" class="btn">Khám phá Blog <i class="fas fa-arrow-right"></i></a>
@@ -26,31 +26,46 @@
     </div>
 </section>
 
-<!-- Features Section -->
-<section class="features">
-    <div class="features-grid">
-        <div class="feature-card">
-            <div class="feature-icon">
-                <i class="fab fa-java"></i>
+<!-- Quick Start Guide -->
+<section class="quick-start">
+    <div class="container">
+        <h2 class="section-title">
+            <i class="fas fa-rocket"></i>
+            Bắt đầu học lập trình
+        </h2>
+        <div class="guide-steps">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Cài đặt Java</h3>
+                    <p>Tải và cài đặt JDK 17+ từ Oracle hoặc OpenJDK</p>
+                    <a href="https://www.oracle.com/java/technologies/downloads/" target="_blank" class="step-link">
+                        Tải JDK <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
             </div>
-            <h3>Java Programming</h3>
-            <p>Khám phá sức mạnh của Java: Spring Boot, Socket programming, RESTful API và Microservices.</p>
-        </div>
-        
-        <div class="feature-card">
-            <div class="feature-icon">
-                <i class="fab fa-js-square"></i>
+            
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Chọn IDE</h3>
+                    <p>IntelliJ IDEA, Eclipse hoặc VS Code với Java extension</p>
+                    <a href="https://www.jetbrains.com/idea/download/" target="_blank" class="step-link">
+                        Tải IntelliJ <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
             </div>
-            <h3>JavaScript & Node.js</h3>
-            <p>JavaScript không chỉ cho browser: Node.js, Express.js, WebSocket và React/Vue.js.</p>
-        </div>
-        
-        <div class="feature-card">
-            <div class="feature-icon">
-                <i class="fas fa-laptop-code"></i>
+            
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Học JavaScript</h3>
+                    <p>Node.js, Express.js và các framework frontend</p>
+                    <a href="/DA_LTM/blog/" class="step-link">
+                        Đọc bài viết <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
             </div>
-            <h3>Full-Stack Development</h3>
-            <p>Kết hợp Java backend với JavaScript frontend để xây dựng ứng dụng web hoàn chỉnh.</p>
         </div>
     </div>
 </section>
@@ -306,6 +321,93 @@
     border: 1px solid rgba(107, 70, 193, 0.2);
 }
 
+/* Quick Start Guide Styles */
+.quick-start {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, rgba(107, 70, 193, 0.05) 0%, rgba(244, 114, 182, 0.05) 100%);
+}
+
+.guide-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.step-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.step-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+}
+
+.step-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(107, 70, 193, 0.2);
+}
+
+.step-number {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 5px 15px rgba(107, 70, 193, 0.3);
+}
+
+.step-content h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--text);
+}
+
+.step-content p {
+    color: var(--text);
+    opacity: 0.8;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.step-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    background: var(--bg);
+    color: var(--primary);
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid var(--primary);
+}
+
+.step-link:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(107, 70, 193, 0.3);
+}
+
 @media (max-width: 768px) {
     .hero-content {
         grid-template-columns: 1fr;
@@ -320,7 +422,7 @@
         justify-content: center;
     }
     
-    .features-grid {
+    .guide-steps {
         grid-template-columns: 1fr;
     }
     
