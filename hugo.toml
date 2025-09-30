@@ -1,0 +1,47 @@
+baseURL = 'https://tg-bao.github.io/DA_LTM/'
+languageCode = 'vi'
+title = 'Blog Lập Trình Mạng'
+theme = 'elegant-cute'
+
+[params]
+  author = "Tên của bạn"
+  description = "Blog cá nhân chia sẻ kiến thức về lập trình mạng với Java & JavaScript"
+  avatar = "/images/avatar.jpg"
+  
+  # Màu sắc sang trọng & cute
+  primaryColor = "#6B46C1"  # Deep Purple
+  secondaryColor = "#F472B6"  # Soft Pink
+  accentColor = "#F59E0B"  # Gold
+  backgroundColor = "#FEF7ED"  # Cream
+  textColor = "#374151"  # Dark Gray
+  
+  # Social links
+  github = "https://github.com/your-username"
+  linkedin = "https://linkedin.com/in/your-profile"
+  email = "your-email@example.com"
+  
+  # Blog settings
+  showReadingTime = true
+  showWordCount = true
+  enableComments = false
+  
+[menu]
+  [[menu.main]]
+    name = "Trang chủ"
+    url = "/"
+    weight = 1
+    
+  [[menu.main]]
+    name = "Blog"
+    url = "/blog/"
+    weight = 2
+    
+  [[menu.main]]
+    name = "Giới thiệu"
+    url = "/about/"
+    weight = 3
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
