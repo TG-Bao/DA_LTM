@@ -1,4 +1,4 @@
-baseURL = 'https://tg-bao.github.io/DA_LTM'
+baseURL = 'https://tg-bao.github.io/DA_LTM/'
 languageCode = 'vi'
 title = 'Blog Lập Trình Mạng'
 theme = 'elegant-cute'
@@ -16,9 +16,9 @@ theme = 'elegant-cute'
   textColor = "#374151"  # Dark Gray
   
   # Social links
-  github = "https://github.com/your-username"
-  linkedin = "https://linkedin.com/in/your-profile"
-  email = "your-email@example.com"
+  github = "https://github.com/TG-Bao"
+ 
+  email = "tgbao.16102004@gmail.com"
   
   # Blog settings
   showReadingTime = true
