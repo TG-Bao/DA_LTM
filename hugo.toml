@@ -4,7 +4,7 @@ title = 'Blog Lập Trình Mạng'
 theme = 'elegant-cute'
 
 [params]
-  author = "Tên của bạn"
+  author = "TG-Bao"
   description = "Blog cá nhân chia sẻ kiến thức về lập trình mạng với Java & JavaScript"
   avatar = "/images/avatar.jpg"
   
