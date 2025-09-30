@@ -20,7 +20,7 @@
 
 <div class="blog-posts">
     {{ range .Pages }}
-    <article class="blog-post-card" data-category="{{ .Params.category | default 'general' }}">
+    <article class="blog-post-card" data-category="{{ .Params.category | default "general" }}">
         <div class="post-header">
             <div class="post-meta">
                 <span class="post-date">
