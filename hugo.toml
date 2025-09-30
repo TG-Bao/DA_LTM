@@ -1,11 +1,11 @@
 baseURL = 'https://tg-bao.github.io/DA_LTM/'
 languageCode = 'vi'
-title = 'Blog Lập Trình Mạng'
+title = 'TiiBii Blog'
 theme = 'elegant-cute'
 
 [params]
   author = "TG-Bao"
-  description = "Blog cá nhân chia sẻ kiến thức về lập trình mạng với Java & JavaScript"
+  description = "Blog chia sẻ kiến thức về lập trình Java và JavaScript - từ cơ bản đến nâng cao"
   avatar = "/images/avatar.jpg"
   
   # Màu sắc sang trọng & cute
@@ -28,17 +28,17 @@ theme = 'elegant-cute'
 [menu]
   [[menu.main]]
     name = "Trang chủ"
-    url = "/"
+    url = "/DA_LTM/"
     weight = 1
     
   [[menu.main]]
     name = "Blog"
-    url = "/blog/"
+    url = "/DA_LTM/blog/"
     weight = 2
     
   [[menu.main]]
     name = "Giới thiệu"
-    url = "/about/"
+    url = "/DA_LTM/about/"
     weight = 3
 
 [markup]
