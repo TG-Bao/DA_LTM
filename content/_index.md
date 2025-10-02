@@ -5,51 +5,26 @@ draft: false
 description: "Chia sẻ kiến thức về lập trình Java và JavaScript"
 ---
 
-# Chào mừng đến với Blog Lập Trình! 🚀
 
-Nơi chia sẻ kiến thức về **Java** và **JavaScript** - hai ngôn ngữ lập trình mạnh mẽ nhất hiện nay.
+Chào mừng bạn đến với **TiiBii Blog** – không gian chia sẻ kiến thức về **lập trình Java** và **JavaScript**!
 
-## 🌐 Giới thiệu về Web Development
+Website này được xây dựng với mục tiêu giúp các bạn sinh viên, lập trình viên trẻ hoặc bất kỳ ai quan tâm đến hai ngôn ngữ phổ biến này có thể:
 
-Web Development là quá trình xây dựng và phát triển các ứng dụng web. Với sự phát triển của công nghệ, việc học lập trình web đã trở nên dễ dàng và thú vị hơn bao giờ hết.
+- **Tiếp cận các bài viết chất lượng** về Java, JavaScript, backend, frontend, web, API, và nhiều chủ đề thực tiễn khác.
+- **Học hỏi qua ví dụ thực tế, hướng dẫn chi tiết** và các tips hữu ích cho quá trình học tập, làm việc.
+- **Cập nhật kiến thức mới** về công nghệ, framework, công cụ lập trình hiện đại.
+- **Kết nối, chia sẻ kinh nghiệm** cùng cộng đồng lập trình viên trẻ Việt Nam.
 
-### ☕ Java - Backend mạnh mẽ
-Java là ngôn ngữ lập trình hướng đối tượng, được sử dụng rộng rãi trong phát triển ứng dụng web backend. Với Java, bạn có thể:
-- Xây dựng RESTful API
-- Phát triển ứng dụng Spring Boot
-- Lập trình Socket và Network
-- Xây dựng Microservices
+> **Sứ mệnh:** Đơn giản hóa việc học lập trình, truyền cảm hứng và hỗ trợ bạn phát triển kỹ năng vững chắc.
 
-### 🌐 JavaScript - Full-stack linh hoạt
-JavaScript không chỉ dành cho frontend mà còn có thể chạy trên server với Node.js:
-- Frontend: React, Vue.js, Angular
-- Backend: Node.js, Express.js
-- Real-time: WebSocket, Socket.io
-- Mobile: React Native
+---
 
-## 🛠️ Hướng dẫn cài đặt Java
+### 📚 Một số chuyên mục nổi bật:
 
-### Bước 1: Tải và cài đặt JDK
-1. Truy cập [Oracle JDK](https://www.oracle.com/java/technologies/downloads/) hoặc [OpenJDK](https://openjdk.org/)
-2. Tải phiên bản JDK 17 hoặc mới hơn
-3. Chạy file cài đặt và làm theo hướng dẫn
-4. Kiểm tra cài đặt: `java -version`
+- [Bài viết mới nhất](/DA_LTM/)
+- [Giới thiệu tác giả](/DA_LTM/about/)
+- [Danh sách bài viết](/DA_LTM/blog/)
 
-### Bước 2: Cài đặt IDE cho Java
-**IntelliJ IDEA (Khuyến nghị):**
-- Tải [IntelliJ IDEA Community](https://www.jetbrains.com/idea/download/)
-- Cài đặt và tạo project mới
-- Cấu hình JDK trong Settings
+Cảm ơn bạn đã ghé thăm!  
+**TG-Bao**
 
-**Eclipse:**
-- Tải [Eclipse IDE](https://www.eclipse.org/downloads/)
-- Chọn "Eclipse IDE for Java Developers"
-- Cài đặt và cấu hình workspace
-
-**Visual Studio Code:**
-- Tải [VS Code](https://code.visualstudio.com/)
-- Cài đặt extension "Extension Pack for Java"
-- Cài đặt JDK và cấu hình
-
-## 📚 Bài viết mới nhất
-Truy cập [Blog](/DA_LTM/blog/) để đọc những bài viết mới nhất về Java và JavaScript!

@@ -14,7 +14,6 @@
         <button class="filter-btn active" data-filter="all">Tất cả</button>
         <button class="filter-btn" data-filter="java">Java</button>
         <button class="filter-btn" data-filter="javascript">JavaScript</button>
-        <button class="filter-btn" data-filter="network">Network</button>
     </div>
 </div>
 
@@ -130,12 +129,13 @@
 }
 
 .blog-post-card {
-    background: white;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
     border-radius: 20px;
     padding: 2rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px var(--shadow);
     transition: all 0.3s ease;
-    border: 1px solid rgba(107, 70, 193, 0.1);
+    border: 1px solid var(--border-color);
     position: relative;
     overflow: hidden;
 }
@@ -152,7 +152,7 @@
 
 .blog-post-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(107, 70, 193, 0.2);
+    box-shadow: 0 20px 40px var(--shadow);
 }
 
 .post-header {
@@ -164,8 +164,8 @@
     gap: 1rem;
     flex-wrap: wrap;
     font-size: 0.9rem;
-    color: var(--text);
-    opacity: 0.7;
+    color: var(--text-secondary);
+    opacity: 0.8;
 }
 
 .post-meta span {
@@ -197,7 +197,7 @@
 }
 
 .post-title a {
-    color: var(--text);
+    color: var(--text-primary);
     text-decoration: none;
     transition: color 0.3s ease;
 }
@@ -207,7 +207,7 @@
 }
 
 .post-excerpt {
-    color: var(--text);
+    color: var(--text-secondary);
     opacity: 0.8;
     line-height: 1.6;
     margin-bottom: 1rem;
@@ -220,12 +220,12 @@
 }
 
 .tag {
-    background: var(--bg);
-    color: var(--text);
+    background: var(--bg-primary);
+    color: var(--text-primary);
     padding: 0.3rem 0.8rem;
     border-radius: 15px;
     font-size: 0.8rem;
-    border: 1px solid rgba(107, 70, 193, 0.2);
+    border: 1px solid var(--border-color);
     transition: all 0.3s ease;
 }
 
@@ -250,6 +250,69 @@
 .read-more-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 20px rgba(107, 70, 193, 0.3);
+}
+
+/* Dark Mode Styles for Blog */
+[data-theme="dark"] .blog-header {
+    background: linear-gradient(135deg, rgba(31, 41, 55, 0.1) 0%, rgba(55, 65, 81, 0.1) 100%);
+}
+
+[data-theme="dark"] .blog-title {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .blog-description {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .filter-btn {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: transparent;
+}
+
+[data-theme="dark"] .filter-btn:hover,
+[data-theme="dark"] .filter-btn.active {
+    background: var(--primary);
+    color: white;
+}
+
+[data-theme="dark"] .blog-post-card {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+    box-shadow: 0 10px 30px var(--shadow);
+}
+
+[data-theme="dark"] .blog-post-card:hover {
+    box-shadow: 0 20px 40px var(--shadow);
+}
+
+[data-theme="dark"] .post-meta {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .post-title a {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .post-title a:hover {
+    color: var(--primary);
+}
+
+[data-theme="dark"] .post-excerpt {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .tag {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .tag:hover {
+    background: var(--primary);
+    color: white;
 }
 
 @media (max-width: 768px) {
