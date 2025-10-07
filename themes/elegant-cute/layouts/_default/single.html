@@ -437,8 +437,20 @@
         {{ end }}
     </header>
     
-    <div class="post-content">
-        {{ .Content }}
+    <div class="post-layout">
+        <div class="post-main">
+            <div class="post-content">
+                {{ .Content }}
+            </div>
+        </div>
+        <aside class="post-toc" aria-label="Mục lục bài viết">
+            <div class="toc-card">
+                <div class="toc-title"><i class="fas fa-list-ul"></i> Mục lục</div>
+                <nav class="toc-content">
+                    {{ .TableOfContents }}
+                </nav>
+            </div>
+        </aside>
     </div>
     
     <footer class="post-footer">
@@ -474,20 +486,23 @@
 </article>
 
 <style>
+.single-post { --page-gutter: 36px; }
 .single-post {
-    max-width: 800px;
-    margin: 0 auto;
-    background: white;
-    border-radius: 20px;
-    padding: 3rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    margin-bottom: 3rem;
+   
+    width: calc(100vw - var(--page-gutter) * 2);
+    margin-left: calc(50% - 50vw + var(--page-gutter));
+    max-width: calc(100vw - var(--page-gutter) * 2);
+    background: rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 0 1.5rem;
+    box-shadow: none;
+    margin-bottom: 2rem;
 }
 
 .post-header {
-    margin-bottom: 2rem;
-    padding-bottom: 2rem;
-    border-bottom: 2px solid var(--bg);
+    margin: 0 0 1.5rem 0;
+    padding: 0 0 1.5rem 0;
+    border-bottom: 1px solid var(--border-color);   
 }
 
 .post-meta {
@@ -560,6 +575,46 @@
     line-height: 1.8;
     color: var(--text);
 }
+
+/* Layout with TOC */
+.post-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) 280px;
+    gap: 2rem;
+}
+
+.post-main {
+    min-width: 0;
+}
+
+.post-toc {
+    display: block;
+}
+
+.toc-card {
+    position: sticky;
+    top: 100px;
+    background: var(--bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 6px 18px var(--shadow);
+    padding: 1rem 1.25rem;
+}
+
+.toc-title {
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.toc-content { max-height: 60vh; overflow: auto; }
+.toc-content ul { list-style: none; padding-left: 0.75rem; }
+.toc-content li { margin: 0.25rem 0; }
+.toc-content a { color: var(--text-secondary); text-decoration: none; border-left: 2px solid transparent; padding-left: 0.5rem; display: inline-block; }
+.toc-content a:hover { color: var(--primary); border-left-color: var(--primary); }
 
 .post-content h1,
 .post-content h2,
@@ -648,7 +703,7 @@
 }
 
 .post-footer {
-    margin-top: 3rem;
+    margin-top: 2rem;
     padding-top: 2rem;
     border-top: 2px solid var(--bg);
 }
@@ -722,10 +777,9 @@
 }
 
 @media (max-width: 768px) {
-    .single-post {
-        padding: 2rem;
-        margin: 1rem;
-    }
+    .single-post { --page-gutter: 12px; width: calc(100vw - var(--page-gutter) * 2); margin-left: calc(50% - 50vw + var(--page-gutter)); padding: 1rem; }
+    .post-layout { grid-template-columns: 1fr; }
+    .post-toc { order: -1; }
     
     .post-title {
         font-size: 2rem;

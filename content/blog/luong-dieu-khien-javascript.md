@@ -54,6 +54,10 @@ if (score >= 90) {
 }
 ```
 
+Mẹo của mình khi viết nhánh điều kiện:
+- Sắp xếp điều kiện theo thứ tự loại trừ (từ chặt nhất đến rộng dần) để tránh trùng lặp logic.
+- Khi thấy `if/else if` quá dài, xem có thể đổi sang `lookup table` (object/dictionary) cho gọn không.
+
 #### 2. **Ternary Operator (Toán tử 3 ngôi)**
 
 ```javascript
@@ -66,6 +70,8 @@ let grade = score >= 90 ? "A" :
             score >= 80 ? "B" : 
             score >= 70 ? "C" : "D";
 ```
+
+Toán tử 3 ngôi chỉ nên dùng cho nhánh ngắn, nếu lồng nhau quá 1 cấp thì mình quay về `if/else` để dễ đọc.
 
 #### 3. **Switch Statement**
 

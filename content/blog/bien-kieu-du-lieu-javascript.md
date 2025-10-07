@@ -32,6 +32,8 @@ const PI = 3.14159;
 const API_URL = "https://api.example.com";
 ```
 
+Mình ưu tiên `const` cho hầu hết biến; chỉ dùng `let` khi thật sự cần gán lại. Tránh `var` để không gặp rắc rối về `hoisting` và `function scope`.
+
 **Scope và Hoisting**: `var` có function scope và được hoisted, `let/const` có block scope và không được hoisted. `const` tạo immutable binding, `let` tạo mutable binding. Luôn ưu tiên `const` trước, chỉ dùng `let` khi cần reassignment.
 
 ### 📊 Kiểu dữ liệu trong JavaScript
@@ -67,6 +69,8 @@ let sym = Symbol('id');
 // BigInt - Số nguyên lớn (ES2020)
 let bigNumber = 1234567890123456789012345678901234567890n;
 ```
+
+Khi làm việc với số lớn (tiền tệ, ID), `BigInt` giúp tránh lỗi tràn số. Với chuỗi, mình chuẩn hóa về Unicode NFC để so sánh nhất quán trong ứng dụng đa ngôn ngữ.
 
 **Công cụ kiểm tra kiểu**: `typeof` trả về chuỗi mô tả kiểu dữ liệu. Đặc biệt, `typeof null` trả về `"object"` (đây là bug lịch sử của JavaScript), và `typeof function` trả về `"function"` mặc dù function cũng là object.
 
@@ -128,6 +132,10 @@ let str4 = "hello";
 let bool1 = Boolean(str4); // true
 let bool2 = !!str4; // true
 ```
+
+Kinh nghiệm của mình:
+- `Number()` nghiêm ngặt hơn `parseInt/parseFloat` và sẽ trả về `NaN` nếu có ký tự lạ.
+- Với `parseInt`, luôn truyền cơ số: `parseInt('08', 10)` để tránh hành vi cũ ở môi trường legacy.
 
 **So sánh các hàm chuyển đổi**: `Number()` chuyển đổi toàn bộ chuỗi, `parseInt()` dừng ở ký tự không phải số, `parseFloat()` xử lý số thập phân. `String()` và `.toString()` tương đương, nhưng `toString()` không hoạt động với `null/undefined`.
 

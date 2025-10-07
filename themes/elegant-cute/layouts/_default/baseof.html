@@ -14,9 +14,6 @@
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Home CSS -->
-    <link rel="stylesheet" href="/css/home.css">
-    
     <!-- Custom CSS -->
     <style>
             :root {
@@ -118,6 +115,15 @@
             background: rgba(255, 255, 255, 0.2);
             transform: translateY(-2px);
         }
+
+        /* Search */
+        .header-search {
+            display: inline-flex; align-items: center; gap: .5rem;
+            background: rgba(255,255,255,.15); padding: .35rem .6rem; border-radius: 999px;
+        }
+        .header-search input{ background: transparent; border: none; outline: none; color: #fff; width: 160px; }
+        .header-search input::placeholder{ color: rgba(255,255,255,.8); }
+        .header-search button{ background: transparent; border: none; color: #fff; cursor: pointer; }
         
         /* Main Content */
         .main {
@@ -255,6 +261,12 @@
                         {{ range .Site.Menus.main }}
                         <li><a href="{{ .URL }}">{{ .Name }}</a></li>
                         {{ end }}
+                        <li>
+                            <form class="header-search" action="{{ "blog/" | relURL }}" method="get" onsubmit="return goSearch(event)">
+                                <input type="text" name="q" id="header-search-input" placeholder="Tìm bài viết..." aria-label="Tìm kiếm" />
+                                <button type="submit" aria-label="Tìm"><i class="fas fa-search"></i></button>
+                            </form>
+                        </li>
                         <li>
                             <button id="theme-toggle" class="theme-toggle" title="Chuyển đổi chế độ sáng/tối">
                                 <i class="fas fa-moon" id="theme-icon"></i>
@@ -643,6 +655,15 @@
 
     <!-- Chatbot JavaScript -->
     <script>
+        function goSearch(e){
+            e.preventDefault();
+            const input = document.getElementById('header-search-input');
+            const q = (input && input.value || '').trim();
+            const url = new URL('{{ "blog/" | relURL }}', window.location.origin);
+            if(q) url.searchParams.set('q', q);
+            window.location.href = url.toString();
+            return false;
+        }
     class Chatbot {
         constructor() {
             this.toggle = document.getElementById('chatbot-toggle');

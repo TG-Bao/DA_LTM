@@ -41,7 +41,7 @@
         Bài viết mới nhất
     </h2>
     <div class="posts-grid">
-        {{ range first 4 (where .Site.RegularPages "Section" "blog") }}
+            {{ range first 6 (where .Site.RegularPages "Section" "blog") }}
         <article class="post-card" onclick="window.location.href='{{ .Permalink }}'">
             <div class="post-meta">
                 <span class="post-date">{{ .Date.Format "02/01/2006" }}</span>
@@ -180,7 +180,8 @@
 
 .posts-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
+    align-items: stretch;
     gap: 1.5rem;
     max-width: 1200px;
     margin: 0 auto;
@@ -197,7 +198,9 @@
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .post-card::before {
@@ -254,12 +257,18 @@
     margin-bottom: 1.2rem;
     line-height: 1.5;
     font-size: 0.9rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 3.2em;
 }
 
 .post-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: auto;
 }
 
 .read-more {
@@ -324,6 +333,13 @@
     
     .post-title {
         font-size: 1.1rem;
+    }
+}
+
+/* Tablet: 2 cột */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .posts-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 </style>

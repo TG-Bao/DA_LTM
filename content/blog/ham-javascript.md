@@ -49,6 +49,8 @@ function getCurrentTime() {
 console.log(getCurrentTime()); // "14:30:25"
 ```
 
+Nhìn nhanh lại: đây là cách mình đi từ cơ bản đến thực dụng khi học hàm. Mấu chốt là viết hàm ngắn, đặt tên rõ nghĩa và để mỗi hàm giải quyết đúng một nhiệm vụ. Khi thấy một khối code lặp lại từ 2 lần trở lên, mình trích nó thành hàm riêng để dễ test và tái sử dụng.
+
 **Function Declaration vs Expression**: Function Declaration được "hoisted" - có thể gọi trước khi khai báo. Function Expression không được hoisted, phải khai báo trước khi sử dụng. Arrow Function (ES6) không có `this` binding và không thể dùng làm constructor.
 
 #### 2. **Function Expression**
@@ -85,6 +87,11 @@ const getRandom = () => Math.random();
 // Arrow function với nhiều tham số
 const calculate = (a, b, c) => a + b * c;
 ```
+
+Khi chọn giữa Declaration/Expression/Arrow, mình dùng quy tắc đơn giản:
+- Cần hoisting hoặc định nghĩa API ở top-level → dùng Function Declaration.
+- Cần truyền hàm như giá trị, gán động → Function Expression.
+- Callback ngắn gọn, không cần `this/arguments` → Arrow Function.
 
 ### 🔄 Tham số và đối số
 

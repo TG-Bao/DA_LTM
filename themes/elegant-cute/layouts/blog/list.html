@@ -2,7 +2,7 @@
 <div class="blog-header">
     <h1 class="blog-title">
         <i class="fas fa-blog"></i>
-        Blog Lập Trình Mạng
+        Blog Java & JavaScript
     </h1>
     <p class="blog-description">
         Khám phá thế giới lập trình mạng với Java & JavaScript
@@ -14,6 +14,10 @@
         <button class="filter-btn active" data-filter="all">Tất cả</button>
         <button class="filter-btn" data-filter="java">Java</button>
         <button class="filter-btn" data-filter="javascript">JavaScript</button>
+        <form class="filter-search" action="" onsubmit="return false;" style="display:inline-flex; gap:.5rem; margin-left:1rem;">
+            <input type="text" id="blog-search-input" placeholder="Tìm bài viết..." style="padding:.6rem .8rem; border-radius:25px; border:1px solid var(--border-color); min-width:220px;"/>
+            <button class="filter-btn" id="blog-search-btn" style="padding:.6rem 1rem;">Tìm</button>
+        </form>
     </div>
 </div>
 
@@ -123,7 +127,8 @@
 
 .blog-posts {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(3, 1fr); /* 3 bài mỗi dòng */
+    align-items: stretch;
     gap: 2rem;
     margin: 3rem 0;
 }
@@ -138,6 +143,9 @@
     border: 1px solid var(--border-color);
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .blog-post-card::before {
@@ -211,6 +219,11 @@
     opacity: 0.8;
     line-height: 1.6;
     margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* đồng đều chiều cao */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 3.2em;
 }
 
 .post-tags {
@@ -325,14 +338,17 @@
         align-items: center;
     }
     
-    .blog-posts {
-        grid-template-columns: 1fr;
-    }
+    .blog-posts { grid-template-columns: 1fr; }
     
     .post-meta {
         flex-direction: column;
         align-items: flex-start;
     }
+}
+
+/* Tablet: 2 cột */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .blog-posts { grid-template-columns: repeat(2, 1fr); }
 }
 </style>
 
@@ -341,20 +357,30 @@
 document.addEventListener('DOMContentLoaded', function() {
     const filterButtons = document.querySelectorAll('.filter-btn');
     const postCards = document.querySelectorAll('.blog-post-card');
-    
+    const searchInput = document.getElementById('blog-search-input');
+
+    function normalizeCategory(raw) {
+        const v = (raw || '').trim().toLowerCase();
+        if (v === 'java' || v === 'javascript') return v; // exact known values
+        if (v.includes('javascript')) return 'javascript';
+        if (v.includes('java')) return 'java';
+        return v;
+    }
+
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
             const filter = this.getAttribute('data-filter');
-            
+
             // Update active button
             filterButtons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
-            
+
             // Filter posts
             postCards.forEach(card => {
-                const category = card.getAttribute('data-category').toLowerCase();
-                
-                if (filter === 'all' || category.includes(filter)) {
+                const categoryAttr = card.getAttribute('data-category');
+                const category = normalizeCategory(categoryAttr);
+
+                if (filter === 'all' || category === filter) {
                     card.style.display = 'block';
                     card.style.animation = 'fadeIn 0.5s ease-in-out';
                 } else {
@@ -363,6 +389,21 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     });
+
+    function applySearch(){
+        const q = (searchInput?.value || '').trim().toLowerCase();
+        postCards.forEach(card => {
+            const title = card.querySelector('.post-title')?.innerText.toLowerCase() || '';
+            const excerpt = card.querySelector('.post-excerpt')?.innerText.toLowerCase() || '';
+            const match = !q || title.includes(q) || excerpt.includes(q);
+            card.style.display = match ? 'block' : 'none';
+        });
+    }
+    if (searchInput){
+        searchInput.addEventListener('input', applySearch);
+        const urlQ = new URLSearchParams(window.location.search).get('q');
+        if (urlQ){ searchInput.value = urlQ; applySearch(); }
+    }
 });
 
 // Add fadeIn animation

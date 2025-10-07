@@ -31,6 +31,8 @@ Khi bắt đầu học lập trình, tôi đã tìm hiểu nhiều ngôn ngữ k
 console.log("Hello, JavaScript World!");
 ```
 
+Sau dòng `Hello World` đầu tiên, mình hiểu ra: học JavaScript hiệu quả là xen kẽ code ngắn với giải thích vì sao làm như vậy. Từ đó, mỗi ví dụ bên dưới mình đều thêm phần ghi chú ngắn gọn đi kèm.
+
 Tôi nhớ rõ cảm giác khi chạy được dòng code đầu tiên này. Lúc đó tôi nghĩ "Wow, mình đã viết được code rồi!" 😄
 
 **Vai trò của JavaScript**: JavaScript là ngôn ngữ duy nhất chạy được trên cả client-side (browser) và server-side (Node.js). Nó thực thi trong JavaScript Engine (V8, SpiderMonkey) và có thể tương tác với DOM để tạo ra ứng dụng web động.
@@ -46,6 +48,8 @@ function greet(name) {
     return "Hello, " + name + "!";
 }
 ```
+
+Tư duy “nhỏ mà chắc”: mỗi đoạn code minh hoạ chỉ tập trung 1 ý – như khai báo biến, tạo hàm – rồi mình mô tả nhanh mục đích, đầu vào/đầu ra để người đọc nắm “tại sao” chứ không chỉ “làm gì”.
 
 **Điểm đặc biệt**: `let` và `const` có block scope, nghĩa là chúng chỉ tồn tại trong khối code `{}` được khai báo. Trong khi `var` có function scope và có thể gây ra "hoisting" - một hiện tượng JavaScript nâng biến lên đầu function trước khi thực thi.
 

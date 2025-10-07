@@ -37,6 +37,16 @@ console.log(message)
 let text = 'Xin chào JavaScript!;
 ```
 
+Ở trên, mình cố tình tạo 3 lỗi cơ bản rất hay gặp khi mới học:
+- Thiếu dấu ngoặc tròn `)` khi khai báo hàm → trình thông dịch dừng ngay ở bước parse.
+- Quên dấu chấm phẩy trong môi trường build nghiêm ngặt có thể gây lỗi ngoài ý muốn.
+- Thiếu dấu nháy kết thúc chuỗi khiến phần còn lại bị hiểu sai là string.
+
+Cách mình sửa nhanh:
+- Đọc kỹ thông báo lỗi, chú ý cột/ký tự mà IDE highlight.
+- Dùng formatter (Prettier) để so khớp cặp ngoặc/nháy.
+- Bật tính năng tô màu cặp ngoặc để dễ soi sai lệch.
+
 #### 2. **Reference Error (Lỗi tham chiếu)**
 
 ```javascript
@@ -50,6 +60,10 @@ nonExistentFunction(); // ReferenceError
 let obj;
 console.log(obj.property); // TypeError
 ```
+
+Lỗi này xuất hiện khi gọi biến/hàm chưa khai báo hoặc truy cập dữ liệu chưa khởi tạo. Mẹo nhỏ:
+- Ưu tiên `const/let` và để scope hẹp để IDE gợi ý, bắt lỗi sớm.
+- Dùng optional chaining: `obj?.property` khi dữ liệu có thể rỗng.
 
 #### 3. **Type Error (Lỗi kiểu dữ liệu)**
 
@@ -67,6 +81,14 @@ let nullVar = null;
 console.log(nullVar.property); // TypeError
 ```
 
+TypeError xảy ra khi “kỳ vọng” về kiểu không khớp. Thêm guard trước khi gọi:
+```javascript
+if (typeof maybeFn === 'function') {
+  maybeFn();
+}
+```
+Ở module phức tạp, cân nhắc dùng TypeScript để kiểm tra kiểu tĩnh.
+
 #### 4. **Runtime Error (Lỗi thời gian chạy)**
 
 ```javascript
@@ -82,6 +104,10 @@ console.log(arr[10]); // undefined (không phải lỗi)
 let str = "hello";
 str.nonExistentMethod(); // TypeError
 ```
+
+Runtime thường do dữ liệu thực tế khác kỳ vọng. Mình xử lý bằng cách:
+- Viết unit test cho các nhánh xử lý quan trọng.
+- Thêm fallback hợp lý (trả về giá trị mặc định, hiển thị thông báo thân thiện).
 
 ### 🛡️ Xử lý lỗi với Try-Catch
 
@@ -107,6 +133,8 @@ function riskyOperation() {
     return "Thành công!";
 }
 ```
+
+Chỉ bọc `try/catch` ở rìa ngoài (boundary) nơi có thể hiển thị thông báo và ghi log. Tránh lạm dụng ở mọi nơi vì có thể che mất bug thật.
 
 #### 2. **Try-Catch với nhiều loại lỗi**
 
@@ -180,6 +208,8 @@ fetchUserData(123).then(userData => {
 });
 ```
 
+Khi gọi API, luôn kiểm tra `response.ok`, chuẩn hóa lỗi, và ở UI hiển thị thông điệp dễ hiểu kèm hành động tiếp theo cho người dùng.
+
 ### 🔧 Debugging Techniques
 
 #### 1. **Console Methods**
@@ -240,6 +270,8 @@ let numbers = [10, 20, 150, 30];
 let sum = complexFunction(numbers);
 ```
 
+Debugger giúp quan sát luồng dữ liệu. Hãy dùng breakpoint có điều kiện để dừng đúng lúc, tiết kiệm thời gian.
+
 #### 3. **Error Logging**
 
 ```javascript
@@ -282,6 +314,8 @@ try {
     logError(error, {operation: 'riskyOperation', userId: 123});
 }
 ```
+
+Ghi log lỗi giúp tái hiện vấn đề. Ở production có thể gửi về server hoặc dịch vụ như Sentry; lưu ý không kèm thông tin nhạy cảm (PII).
 
 ### 🎯 Ví dụ thực tế: Form Validation
 
