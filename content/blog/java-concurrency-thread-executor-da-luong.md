@@ -1,6 +1,6 @@
 ---
 title: "Java Concurrency: Thread, Executor và quản lý đa luồng"
-date: 2024-10-16T14:00:00+07:00
+date: 2025-09-09T14:00:00+07:00
 draft: false
 description: "Hướng dẫn lập trình đa luồng với Thread, ExecutorService; đồng bộ hóa và tránh deadlock"
 category: "Java"

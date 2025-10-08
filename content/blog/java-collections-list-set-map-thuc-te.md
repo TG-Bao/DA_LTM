@@ -1,6 +1,6 @@
 ---
 title: "Xử lý Collections trong Java: List, Set và Map"
-date: 2024-10-16T12:00:00+07:00
+date: 2025-09-05T12:00:00+07:00
 draft: false
 description: "Hướng dẫn sử dụng List, Set, Map; so sánh ưu nhược điểm với ví dụ thực tế"
 category: "Java"

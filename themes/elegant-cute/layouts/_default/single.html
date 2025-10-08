@@ -399,8 +399,11 @@
 
 {{ else }}
 <!-- Default Single Post Layout -->
+ 
 <article class="single-post">
+    
     <header class="post-header">
+
         <div class="post-meta">
             {{ if .Params.date }}
             <span class="post-date">
@@ -437,6 +440,21 @@
         {{ end }}
     </header>
     
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+            <li><a href="{{ "/" | relURL }}">Trang chủ</a></li>
+            <li><a href="{{ "/blog/" | relURL }}">Blog</a></li>
+            <li aria-current="page">{{ .Title }}</li>
+        </ol>
+    </nav>
+      
+    <div class="back-to-blog-top">
+        <a href="{{ "/DA_LTM/blog/" | relURL }}" class="back-btn">
+            <i class="fas fa-arrow-left"></i>
+            <span>Trở về</span>
+        </a>
+    </div>
+
     <div class="post-layout">
         <div class="post-main">
             <div class="post-content">
@@ -455,20 +473,31 @@
     
     <footer class="post-footer">
         <div class="post-navigation">
-            {{ if .PrevInSection }}
-            <a href="{{ .PrevInSection.Permalink }}" class="nav-link prev">
-                <i class="fas fa-arrow-left"></i>
-                {{ .PrevInSection.Title }}
-            </a>
+            {{ $blogPages := where .Site.RegularPages "Section" "blog" }}
+            {{ $currentIndex := -1 }}
+            {{ range $index, $page := $blogPages }}
+                {{ if eq $page.Permalink $.Permalink }}
+                    {{ $currentIndex = $index }}
+                {{ end }}
             {{ end }}
             
-            {{ if .NextInSection }}
-            <a href="{{ .NextInSection.Permalink }}" class="nav-link next">
-                {{ .NextInSection.Title }}
-                <i class="fas fa-arrow-right"></i>
-            </a>
+            {{ if gt $currentIndex 0 }}
+                {{ $prevPage := index $blogPages (sub $currentIndex 1) }}
+                <a href="{{ $prevPage.Permalink }}" class="nav-link prev">
+                    <i class="fas fa-arrow-left"></i>
+                    {{ $prevPage.Title }}
+                </a>
+            {{ end }}
+            
+            {{ if lt $currentIndex (sub (len $blogPages) 1) }}
+                {{ $nextPage := index $blogPages (add $currentIndex 1) }}
+                <a href="{{ $nextPage.Permalink }}" class="nav-link next">
+                    {{ $nextPage.Title }}
+                    <i class="fas fa-arrow-right"></i>
+                </a>
             {{ end }}
         </div>
+        
         
         <div class="post-share">
             <span>Chia sẻ:</span>
@@ -776,6 +805,230 @@
     transform: translateY(-3px);
 }
 
+.breadcrumb {
+    margin: 1rem 0;
+    padding: 0.5rem 0;
+}
+
+.breadcrumb-list {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.breadcrumb-list li:not(:last-child)::after {
+    content: "›";
+    margin-left: 0.5rem;
+    color: var(--text-secondary);
+}
+
+.breadcrumb-list a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.breadcrumb-list a:hover {
+    color: var(--secondary);
+    text-decoration: underline;
+}
+
+.breadcrumb-list li[aria-current="page"] {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.back-to-blog-top {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 10px;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(107, 70, 193, 0.3);
+}
+
+.back-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(107, 70, 193, 0.4);
+}
+
+.back-btn i {
+    font-size: 0.9rem;
+}
+
+/* Dark Mode Styles */
+[data-theme="dark"] .single-post {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .post-header {
+    border-bottom-color: var(--border-color);
+}
+
+[data-theme="dark"] .post-meta {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .post-title {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .post-description {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .tag {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .tag:hover {
+    background: var(--primary);
+    color: white;
+}
+
+[data-theme="dark"] .post-content {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .post-content h1,
+[data-theme="dark"] .post-content h2,
+[data-theme="dark"] .post-content h3,
+[data-theme="dark"] .post-content h4,
+[data-theme="dark"] .post-content h5,
+[data-theme="dark"] .post-content h6 {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .post-content h2 {
+    border-bottom-color: var(--border-color);
+}
+
+[data-theme="dark"] .post-content blockquote {
+    background: var(--bg-primary);
+    border-left-color: var(--primary);
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .post-content code {
+    background: var(--bg-primary);
+    color: var(--primary);
+}
+
+[data-theme="dark"] .post-content pre {
+    background: #1a1a1a;
+    color: #f8f8f2;
+}
+
+[data-theme="dark"] .post-content a {
+    color: var(--primary);
+}
+
+[data-theme="dark"] .post-content a:hover {
+    border-bottom-color: var(--primary);
+}
+
+[data-theme="dark"] .post-footer {
+    border-top-color: var(--border-color);
+}
+
+[data-theme="dark"] .nav-link {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .nav-link:hover {
+    background: var(--primary);
+    color: white;
+}
+
+[data-theme="dark"] .post-share span {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .post-share a {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .post-share a:hover {
+    background: var(--primary);
+    color: white;
+}
+
+[data-theme="dark"] .toc-card {
+    background: var(--bg-primary);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .toc-title {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .toc-content a {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .toc-content a:hover {
+    color: var(--primary);
+    border-left-color: var(--primary);
+}
+
+/* Smooth scroll for TOC links */
+.toc-content a {
+    scroll-behavior: smooth;
+}
+
+[data-theme="dark"] .back-btn {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+}
+
+[data-theme="dark"] .back-btn:hover {
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+}
+
+[data-theme="dark"] .breadcrumb-list {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .breadcrumb-list li:not(:last-child)::after {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .breadcrumb-list a {
+    color: var(--primary);
+}
+
+[data-theme="dark"] .breadcrumb-list a:hover {
+    color: var(--secondary);
+}
+
+[data-theme="dark"] .breadcrumb-list li[aria-current="page"] {
+    color: var(--text-primary);
+}
+
 @media (max-width: 768px) {
     .single-post { --page-gutter: 12px; width: calc(100vw - var(--page-gutter) * 2); margin-left: calc(50% - 50vw + var(--page-gutter)); padding: 1rem; }
     .post-layout { grid-template-columns: 1fr; }
@@ -796,6 +1049,16 @@
     
     .nav-link {
         max-width: 100%;
+    }
+    
+    .back-to-blog-top {
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .back-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
     }
 }
 </style>

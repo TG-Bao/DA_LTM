@@ -1,6 +1,6 @@
 ---
 title: "Hiểu sâu về Biến và Kiểu Dữ liệu trong Java"
-date: 2024-10-16T10:00:00+07:00
+date: 2025-09-01T10:00:00+07:00
 draft: false
 description: "Biến, phạm vi, kiểu nguyên thủy, tham chiếu và cách quản lý bộ nhớ cơ bản"
 category: "Java"

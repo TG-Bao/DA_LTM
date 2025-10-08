@@ -1,6 +1,6 @@
 ---
 title: "Java OOP: Lớp, Đối tượng và Kế thừa một cách dễ hiểu nhất"
-date: 2024-10-16T11:00:00+07:00
+date: 2025-09-03T11:00:00+07:00
 draft: false
 description: "Giải thích OOP trong Java với ví dụ rõ ràng: class, object, inheritance, override, polymorphism"
 category: "Java"

@@ -1,12 +1,11 @@
 ---
 title: "Biến và Kiểu dữ liệu JavaScript - Bí quyết thành công từ A đến Z"
-date: 2024-10-15T10:00:00+07:00
+date: 2025-09-12T10:00:00+07:00
 draft: false
 description: "Khám phá bí quyết học biến và kiểu dữ liệu JavaScript hiệu quả - từ cơ bản đến nâng cao"
 category: "JavaScript"
 tags: ["JavaScript", "Biến", "Kiểu dữ liệu", "Bí quyết"]
 readingTime: "12 phút"
-author: "TG-Bao"
 ---
 
 ## 📝 Biến trong JavaScript - Những điều tôi đã học được

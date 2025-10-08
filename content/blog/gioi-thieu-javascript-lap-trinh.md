@@ -1,6 +1,6 @@
 ---
 title: "JavaScript - Hành trình từ Zero đến Hero"
-date: 2024-10-15T09:00:00+07:00
+date: 2025-09-11T09:00:00+07:00
 draft: false
 description: "Khám phá hành trình học JavaScript - từ con số 0 đến trở thành lập trình viên tự tin"
 category: "JavaScript"

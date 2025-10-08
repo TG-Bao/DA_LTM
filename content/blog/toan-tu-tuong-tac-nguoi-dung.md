@@ -1,6 +1,6 @@
 ---
 title: "Toán tử JavaScript - Bậc thầy tương tác người dùng"
-date: 2024-10-15T11:00:00+07:00
+date: 2025-09-13T11:00:00+07:00
 draft: false
 description: "Trở thành bậc thầy toán tử JavaScript và tạo ra những tương tác người dùng tuyệt vời"
 category: "JavaScript"

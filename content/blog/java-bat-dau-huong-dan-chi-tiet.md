@@ -1,6 +1,6 @@
 ---
 title: "Bắt đầu với Java: Hướng dẫn chi tiết cho người mới"
-date: 2024-10-16T09:00:00+07:00
+date: 2025-09-28T09:00:00+07:00
 draft: false
 description: "Giới thiệu tổng quan về Java, cài đặt môi trường và viết chương trình đầu tiên"
 category: "Java"

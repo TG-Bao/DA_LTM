@@ -1,6 +1,6 @@
 ---
 title: "Luồng điều khiển JavaScript - Nghệ thuật lập trình thông minh"
-date: 2024-10-15T12:00:00+07:00
+date: 2025-09-14T12:00:00+07:00
 draft: false
 description: "Khám phá nghệ thuật luồng điều khiển JavaScript và cách tạo ra logic thông minh"
 category: "JavaScript"

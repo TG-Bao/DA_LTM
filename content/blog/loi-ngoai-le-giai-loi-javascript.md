@@ -1,6 +1,6 @@
 ---
 title: "Xử lý Lỗi JavaScript - Bí quyết Debug siêu đẳng"
-date: 2024-10-15T14:00:00+07:00
+date: 2025-09-16T14:00:00+07:00
 draft: false
 description: "Khám phá bí quyết xử lý lỗi JavaScript và trở thành bậc thầy debug"
 category: "JavaScript"

@@ -1,6 +1,6 @@
 ---
 title: "Hàm JavaScript - Siêu năng lực của lập trình viên"
-date: 2024-10-15T13:00:00+07:00
+date: 2025-09-15T13:00:00+07:00
 draft: false
 description: "Khám phá siêu năng lực của hàm JavaScript và cách sử dụng chúng để tạo ra code tuyệt vời"
 category: "JavaScript"

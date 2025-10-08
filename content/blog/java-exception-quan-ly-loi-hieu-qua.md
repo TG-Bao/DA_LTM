@@ -1,6 +1,6 @@
 ---
 title: "Quản lý lỗi và Exception trong Java: Bí quyết tránh crash"
-date: 2024-10-16T13:00:00+07:00
+date: 2025-09-07T13:00:00+07:00
 draft: false
 description: "try-catch, throws, custom exception, finally và best practices để app bền vững"
 category: "Java"
