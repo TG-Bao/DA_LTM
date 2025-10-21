@@ -176,6 +176,7 @@
         background: rgba(255, 255, 255, 0.15);
         padding: 0.35rem 0.6rem;
         border-radius: 999px;
+        transition: all 0.3s ease;
       }
       .header-search input {
         background: transparent;
@@ -183,15 +184,52 @@
         outline: none;
         color: #fff;
         width: 160px;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
       }
       .header-search input::placeholder {
         color: rgba(255, 255, 255, 0.8);
+      }
+      
+      .header-search input:focus {
+        outline: none;
+        background: rgba(255, 255, 255, 0.1);
+        transform: scale(1.02);
+        box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+      }
+      
+      .header-search input:focus::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+        transform: translateY(-2px);
+        transition: all 0.3s ease;
       }
       .header-search button {
         background: transparent;
         border: none;
         color: #fff;
         cursor: pointer;
+        padding: 0.25rem;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+      }
+      .header-search button:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: scale(1.1);
+      }
+      
+      .header-search button:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+        transform: none;
+      }
+      
+      .fa-spinner {
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
       }
 
       /* Main Content */
@@ -341,7 +379,7 @@
           </ul>
 
           <div style="display: flex; align-items: center">
-            <form class="header-search" action="/search" method="get">
+            <form class="header-search" action="/DA_LTM/blog/" method="get">
               <input type="text" name="q" placeholder="Tìm kiếm..." />
               <button type="submit"><i class="fas fa-search"></i></button>
             </form>
@@ -762,6 +800,47 @@
         border-top-color: var(--border-color);
       }
 
+      [data-theme="dark"] .header-search {
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      [data-theme="dark"] .header-search input {
+        color: var(--text-primary);
+      }
+      
+      [data-theme="dark"] .header-search input:focus {
+        background: rgba(0, 0, 0, 0.2);
+        transform: scale(1.02);
+        box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.3);
+      }
+      
+      [data-theme="dark"] .header-search input:focus::placeholder {
+        color: rgba(203, 213, 225, 0.6);
+        transform: translateY(-2px);
+        transition: all 0.3s ease;
+      }
+
+      [data-theme="dark"] .header-search input::placeholder {
+        color: var(--text-secondary);
+      }
+
+      [data-theme="dark"] .header-search button {
+        color: var(--text-primary);
+      }
+
+      [data-theme="dark"] .header-search button:hover {
+        background: var(--primary);
+        color: white;
+        transform: scale(1.1);
+      }
+      
+      [data-theme="dark"] .header-search button:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+        transform: none;
+      }
+
       @media (max-width: 768px) {
         .chatbot-container {
           width: 300px;
@@ -772,20 +851,24 @@
           bottom: 15px;
           right: 15px;
         }
+
+        .header-search {
+          padding: 0.25rem 0.5rem;
+        }
+
+        .header-search input {
+          width: 120px;
+          font-size: 0.8rem;
+        }
+        
+        .header-search button {
+          padding: 0.2rem;
+        }
       }
     </style>
 
     <!-- Chatbot JavaScript -->
     <script>
-      function goSearch(e) {
-        e.preventDefault();
-        const input = document.getElementById("header-search-input");
-        const q = ((input && input.value) || "").trim();
-        const url = new URL('{{ "blog/" | relURL }}', window.location.origin);
-        if (q) url.searchParams.set("q", q);
-        window.location.href = url.toString();
-        return false;
-      }
       class Chatbot {
         constructor() {
           this.toggle = document.getElementById("chatbot-toggle");
@@ -1010,10 +1093,65 @@
         }
       }
 
-      // Initialize chatbot and theme toggle when DOM is loaded
+      // Search functionality
+      class SearchHandler {
+        constructor() {
+          this.init();
+        }
+
+        init() {
+          // Handle search form submission
+          const searchForm = document.querySelector(".header-search");
+          if (searchForm) {
+            const searchInput = searchForm.querySelector('input[name="q"]');
+            
+            // Handle form submission
+            searchForm.addEventListener("submit", (e) => {
+              e.preventDefault();
+              const query = searchInput.value.trim();
+              if (query) {
+                this.performSearch(query);
+              }
+            });
+            
+            // Handle Enter key in input
+            searchInput.addEventListener("keydown", (e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                const query = searchInput.value.trim();
+                if (query) {
+                  this.performSearch(query);
+                }
+              }
+            });
+          }
+        }
+
+        performSearch(query) {
+          // Show loading state
+          const searchButton = document.querySelector(".header-search button");
+          if (searchButton) {
+            const originalHTML = searchButton.innerHTML;
+            searchButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            searchButton.disabled = true;
+          }
+          
+          // Redirect to blog page with search query
+          const blogUrl = "/DA_LTM/blog/";
+          const searchUrl = `${blogUrl}?q=${encodeURIComponent(query)}`;
+          
+          // Small delay to show loading state
+          setTimeout(() => {
+            window.location.href = searchUrl;
+          }, 100);
+        }
+      }
+
+      // Initialize chatbot, theme toggle and search when DOM is loaded
       document.addEventListener("DOMContentLoaded", () => {
         new Chatbot();
         new ThemeToggle();
+        new SearchHandler();
       });
     </script>
   </body>

@@ -20,6 +20,12 @@
             <input type="text" id="blog-search-input" placeholder="🔍 Tìm bài viết..." aria-label="Tìm kiếm bài viết" style="padding:.6rem .8rem; border-radius:25px; border:1px solid var(--border-color); min-width:220px; transition: all 0.3s ease;"/>
             <button class="filter-btn" id="blog-search-btn" aria-label="Tìm kiếm" style="padding:.6rem 1rem;">Tìm</button>
         </form>
+        
+        <!-- Search Results Display -->
+        <div id="search-results-info" style="display: none; margin-top: 1rem; padding: 1rem; background: var(--bg-secondary); border-radius: 10px; border-left: 4px solid var(--primary);">
+            <h3 style="margin: 0 0 0.5rem 0; color: var(--primary);">🔍 Kết quả tìm kiếm</h3>
+            <p id="search-query-display" style="margin: 0; color: var(--text-secondary);"></p>
+        </div>
     </div>
     
     <!-- Mobile dropdown filter -->
@@ -367,9 +373,123 @@
     color: white;
 }
 
+[data-theme="dark"] #search-results-info {
+    background: var(--bg-secondary);
+    border-left-color: var(--primary);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] #search-results-info h3 {
+    color: var(--primary);
+}
+
+[data-theme="dark"] #search-query-display {
+    color: var(--text-secondary);
+}
+
+/* Filter Search Styles */
+.filter-search {
+    display: inline-flex;
+    gap: 0.5rem;
+    margin-left: 1rem;
+    align-items: center;
+}
+
+.filter-search input {
+    padding: 0.6rem 0.8rem;
+    border-radius: 25px;
+    border: 1px solid var(--border-color);
+    min-width: 220px;
+    transition: all 0.3s ease;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.filter-search input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(107, 70, 193, 0.2);
+}
+
+.filter-search input::placeholder {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .filter-search input {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .filter-search input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+}
+
+[data-theme="dark"] .filter-search input::placeholder {
+    color: var(--text-secondary);
+}
+
+/* Search Results Info */
+#search-results-info {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: var(--bg-secondary);
+    border-radius: 10px;
+    border-left: 4px solid var(--primary);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#search-results-info h3 {
+    margin: 0 0 0.5rem 0;
+    color: var(--primary);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+#search-query-display {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
 /* Mobile dropdown styles */
 .mobile-filters {
     display: none;
+}
+
+@media (max-width: 768px) {
+    .filter-search {
+        margin-left: 0;
+        margin-top: 1rem;
+        width: 100%;
+    }
+    
+    .filter-search input {
+        min-width: 180px;
+        width: 100%;
+    }
+    
+    .mobile-search {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-top: 1rem;
+    }
+    
+    .mobile-search input {
+        width: 100%;
+        min-width: auto;
+    }
+    
+    #search-results-info {
+        margin-top: 0.5rem;
+        padding: 0.8rem;
+    }
+    
+    #search-results-info h3 {
+        font-size: 1rem;
+    }
 }
 
 .filter-dropdown {
@@ -624,12 +744,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function applySearch(){
         const q = (searchInput?.value || searchInputMobile?.value || '').trim().toLowerCase();
+        let visibleCount = 0;
+        
         postCards.forEach(card => {
             const title = card.querySelector('.post-title')?.innerText.toLowerCase() || '';
             const excerpt = card.querySelector('.post-excerpt')?.innerText.toLowerCase() || '';
             const match = !q || title.includes(q) || excerpt.includes(q);
             card.style.display = match ? 'block' : 'none';
+            if (match) visibleCount++;
         });
+        
+        // Show/hide search results info
+        const searchResultsInfo = document.getElementById('search-results-info');
+        const searchQueryDisplay = document.getElementById('search-query-display');
+        
+        if (q && searchResultsInfo && searchQueryDisplay) {
+            searchResultsInfo.style.display = 'block';
+            searchQueryDisplay.textContent = `Tìm thấy ${visibleCount} bài viết cho từ khóa: "${q}"`;
+        } else if (searchResultsInfo) {
+            searchResultsInfo.style.display = 'none';
+        }
     }
     
     // Desktop search

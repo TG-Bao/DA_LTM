@@ -471,6 +471,50 @@
         </aside>
     </div>
     
+    <!-- Comment System -->
+    <div class="comments-section" data-post-key="{{ .RelPermalink }}">
+        <div class="comments-header">
+            <h3 class="comments-title">
+                <i class="fas fa-comments"></i>
+                Bình luận (<span id="commentsCount">0</span>)
+            </h3>
+            <button id="commentsToggleBtn" class="comments-toggle" type="button" aria-expanded="true">
+                Ẩn bình luận
+            </button>
+        </div>
+        
+        <!-- Comment Form -->
+        <div class="comment-form-container">
+            <form id="commentForm" class="comment-form">
+                <div class="form-group">
+                    <label for="commentEmail">Email *</label>
+                    <input type="email" id="commentEmail" name="email" required 
+                           placeholder="Nhập email của bạn">
+                </div>
+                <div class="form-group">
+                    <label for="commentText">Bình luận *</label>
+                    <textarea id="commentText" name="comment" required 
+                              placeholder="Viết bình luận của bạn..." rows="4"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i>
+                    Gửi bình luận
+                </button>
+            </form>
+        </div>
+        
+        <!-- Comments Display -->
+        <div class="comments-list" id="commentsList">
+            <!-- Comments will be loaded here -->
+        </div>
+    </div>
+    
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Lên đầu trang" title="Lên đầu trang">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+        <span class="sr-only">Lên đầu trang</span>
+    </button>
+    
     <footer class="post-footer">
         <div class="post-navigation">
             {{ $blogPages := where .Site.RegularPages "Section" "blog" }}
@@ -1029,6 +1073,39 @@
     color: var(--text-primary);
 }
 
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    right: auto;
+    left: 20px;
+    bottom: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(107, 70, 193, 0.35);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+    opacity: 1;
+}
+
+.back-to-top:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(107, 70, 193, 0.45);
+}
+
+.back-to-top.show { opacity: 1; }
+
+[data-theme="dark"] .back-to-top {
+    box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+}
+
 @media (max-width: 768px) {
     .single-post { --page-gutter: 12px; width: calc(100vw - var(--page-gutter) * 2); margin-left: calc(50% - 50vw + var(--page-gutter)); padding: 1rem; }
     .post-layout { grid-template-columns: 1fr; }
@@ -1061,6 +1138,493 @@
         font-size: 0.9rem;
     }
 }
+
+/* Comment System Styles */
+.comments-section {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid var(--border-color);
+}
+
+.comments-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.comments-title i {
+    color: var(--primary);
+}
+
+.comments-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.comments-toggle {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.comments-toggle:hover {
+    background: var(--bg-primary);
+    border-color: var(--primary);
+}
+
+.comment-form-container {
+    background: var(--bg-secondary);
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.comment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 0.8rem 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(107, 70, 193, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    align-self: flex-start;
+    box-shadow: 0 4px 15px rgba(107, 70, 193, 0.3);
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(107, 70, 193, 0.4);
+}
+
+.submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.comments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.comments-section.collapsed .comment-form-container,
+.comments-section.collapsed .comments-list {
+    display: none;
+}
+
+.comment-item {
+    background: var(--bg-secondary);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-left: 4px solid var(--primary);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.comment-author {
+    font-weight: 600;
+    color: var(--primary);
+    font-size: 1rem;
+}
+
+.comment-date {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.comment-content {
+    color: var(--text-primary);
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+.comment-empty {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.comment-empty i {
+    font-size: 3rem;
+    color: var(--border-color);
+    margin-bottom: 1rem;
+    display: block;
+}
+
+/* Dark mode for comments */
+[data-theme="dark"] .comment-form-container {
+    background: var(--bg-primary);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group textarea {
+    background: var(--bg-secondary);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .form-group input:focus,
+[data-theme="dark"] .form-group textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+[data-theme="dark"] .comment-item {
+    background: var(--bg-primary);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .comment-author {
+    color: var(--primary);
+}
+
+[data-theme="dark"] .comment-content {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .comment-empty {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .comment-empty i {
+    color: var(--border-color);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .comments-header { flex-direction: column; align-items: stretch; }
+    .comments-toggle { width: 100%; }
+    .comment-form-container {
+        padding: 1.5rem;
+    }
+    
+    .comment-item {
+        padding: 1rem;
+    }
+    
+    .comment-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .submit-btn {
+        align-self: stretch;
+    }
+}
 </style>
+
+<script>
+// Comment System JavaScript
+class CommentSystem {
+    constructor() {
+        const section = document.querySelector('.comments-section');
+        this.postKey = (section && section.getAttribute('data-post-key')) || window.location.pathname;
+        this.comments = this.loadComments();
+        this.init();
+    }
+
+    init() {
+        this.renderComments();
+        this.setupForm();
+    }
+
+    loadComments() {
+        const stored = localStorage.getItem(`comments_${this.postKey}`);
+        return stored ? JSON.parse(stored) : [];
+    }
+
+    saveComments() {
+        localStorage.setItem(`comments_${this.postKey}`, JSON.stringify(this.comments));
+    }
+
+    setupForm() {
+        const form = document.getElementById('commentForm');
+        if (!form) return;
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.submitComment();
+        });
+    }
+
+    submitComment() {
+        const email = document.getElementById('commentEmail').value.trim();
+        const comment = document.getElementById('commentText').value.trim();
+        const submitBtn = document.querySelector('.submit-btn');
+
+        if (!email || !comment) {
+            alert('Vui lòng điền đầy đủ thông tin!');
+            return;
+        }
+
+        if (!this.isValidEmail(email)) {
+            alert('Email không hợp lệ!');
+            return;
+        }
+
+        // Show loading state
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang gửi...';
+
+        // Simulate API call delay
+        setTimeout(() => {
+            const newComment = {
+                id: Date.now(),
+                email: email,
+                comment: comment,
+                date: new Date().toISOString(),
+                timestamp: Date.now()
+            };
+
+            this.comments.unshift(newComment);
+            this.saveComments();
+            this.renderComments();
+            this.resetForm();
+
+            // Reset button
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Gửi bình luận';
+
+            // Show success message
+            this.showMessage('Bình luận đã được gửi thành công!', 'success');
+        }, 1000);
+    }
+
+    resetForm() {
+        document.getElementById('commentForm').reset();
+    }
+
+    renderComments() {
+        const container = document.getElementById('commentsList');
+        const countEl = document.getElementById('commentsCount');
+        if (!container) return;
+
+        if (this.comments.length === 0) {
+            container.innerHTML = `
+                <div class="comment-empty">
+                    <i class="fas fa-comment-slash"></i>
+                    <p>Chưa có bình luận nào. Hãy là người đầu tiên bình luận!</p>
+                </div>
+            `;
+            if (countEl) countEl.textContent = '0';
+            return;
+        }
+
+        container.innerHTML = this.comments.map(comment => `
+            <div class="comment-item">
+                <div class="comment-header">
+                    <span class="comment-author">${this.maskEmail(comment.email)}</span>
+                    <span class="comment-date">${this.formatDate(comment.date)}</span>
+                </div>
+                <div class="comment-content">${this.escapeHtml(comment.comment)}</div>
+            </div>
+        `).join('');
+
+        if (countEl) countEl.textContent = String(this.comments.length);
+    }
+
+    maskEmail(email) {
+        const [username, domain] = email.split('@');
+        const maskedUsername = username.length > 2 
+            ? username.substring(0, 2) + '*'.repeat(username.length - 2)
+            : username;
+        return `${maskedUsername}@${domain}`;
+    }
+
+    formatDate(dateString) {
+        const date = new Date(dateString);
+        const now = new Date();
+        const diff = now - date;
+
+        if (diff < 60000) return 'Vừa xong';
+        if (diff < 3600000) return `${Math.floor(diff / 60000)} phút trước`;
+        if (diff < 86400000) return `${Math.floor(diff / 3600000)} giờ trước`;
+        if (diff < 604800000) return `${Math.floor(diff / 86400000)} ngày trước`;
+        
+        return date.toLocaleDateString('vi-VN');
+    }
+
+    escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    showMessage(message, type = 'info') {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message message-${type}`;
+        messageDiv.textContent = message;
+        messageDiv.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            background: ${type === 'success' ? '#10b981' : '#ef4444'};
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        `;
+
+        document.body.appendChild(messageDiv);
+
+        setTimeout(() => {
+            messageDiv.style.animation = 'slideOut 0.3s ease';
+            setTimeout(() => {
+                document.body.removeChild(messageDiv);
+            }, 300);
+        }, 3000);
+    }
+}
+
+// Initialize comment system when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    new CommentSystem();
+    initBackToTop();
+    initCommentsToggle();
+});
+
+// Add CSS animations
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideIn {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideOut {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(100%); opacity: 0; }
+    }
+`;
+document.head.appendChild(style);
+
+// Back to Top logic
+function initBackToTop() {
+    const btn = document.getElementById('backToTop');
+    if (!btn) return;
+
+    const toggle = () => {
+        // Luôn hiện nút
+        btn.classList.add('show');
+        btn.setAttribute('aria-hidden', 'false');
+    };
+
+    window.addEventListener('scroll', toggle, { passive: true });
+    toggle();
+
+    btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
+
+// Toggle ẩn/hiện bình luận và lưu trạng thái theo bài viết
+function initCommentsToggle() {
+    const section = document.querySelector('.comments-section');
+    const btn = document.getElementById('commentsToggleBtn');
+    if (!section || !btn) return;
+
+    const postKey = section.getAttribute('data-post-key') || window.location.pathname;
+    const storageKey = `comments_visibility_${postKey}`;
+
+    // Load state
+    const persisted = localStorage.getItem(storageKey);
+    const isCollapsed = persisted === 'collapsed';
+    if (isCollapsed) {
+        section.classList.add('collapsed');
+        btn.textContent = 'Mở bình luận';
+        btn.setAttribute('aria-expanded', 'false');
+    } else {
+        btn.setAttribute('aria-expanded', 'true');
+    }
+
+    btn.addEventListener('click', () => {
+        const nowCollapsed = section.classList.toggle('collapsed');
+        if (nowCollapsed) {
+            btn.textContent = 'Mở bình luận';
+            btn.setAttribute('aria-expanded', 'false');
+            localStorage.setItem(storageKey, 'collapsed');
+        } else {
+            btn.textContent = 'Ẩn bình luận';
+            btn.setAttribute('aria-expanded', 'true');
+            localStorage.setItem(storageKey, 'expanded');
+        }
+    });
+}
+</script>
 {{ end }}
 {{ end }}

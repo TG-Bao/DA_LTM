@@ -1,40 +1,83 @@
 {{ define "main" }}
 <!-- About Page Layout -->
 <div class="about-container">
-  <div class="about-sidebar">
-    <div class="profile-section">
+  <!-- Profile Section -->
+  <section class="profile-section">
+    <div class="profile-content">
       <div class="profile-image">
         <img src="{{ .Site.BaseURL }}images/avatar.png" alt="Trần Gia Bảo" />
       </div>
-      <h1 class="profile-name">Trần Gia Bảo</h1>
+      <div class="profile-info">
+        <h1 class="profile-name">Trần Gia Bảo</h1>
+        <p class="personal-slogan">
+          "Code với đam mê, học với tâm huyết, sống với mục đích"
+        </p>
+        <div class="contact-info">
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <span>0359222640</span>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <span>tgbao.16102004@gmail.com</span>
+          </div>
+          <div class="contact-item">
+            <i class="fab fa-github"></i>
+            <a href="https://github.com/TG-Bao" target="_blank"
+              >github.com/TG-Bao</a
+            >
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Thủ Đức, TP.HCM</span>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="contact-info">
-      <h3>Thông tin cá nhân</h3>
-      <div class="contact-item">
-        <i class="fas fa-phone"></i>
-        <span>0359222640</span>
-      </div>
-      <div class="contact-item">
-        <i class="fas fa-envelope"></i>
-        <span>tgbao.16102004@gmail.com</span>
-      </div>
-      <div class="contact-item">
-        <i class="fab fa-github"></i>
-        <a href="https://github.com/TG-Bao" target="_blank"
-          >github.com/TG-Bao</a
-        >
-      </div>
-      <div class="contact-item">
-        <i class="fas fa-map-marker-alt"></i>
-        <span>Thủ Đức, TP.HCM</span>
-      </div>
+  <!-- Personal Introduction -->
+  <section class="personal-intro">
+    <h2>Xin chào! Tôi là Bảo 👋</h2>
+    <p>
+      Tôi là một sinh viên năm 4 ngành Công nghệ thông tin với niềm đam mê mãnh
+      liệt với lập trình và công nghệ. Không chỉ dừng lại ở việc học tập, tôi
+      còn tích cực tham gia các hoạt động thiện nguyện và phát triển bản thân
+      qua nhiều trải nghiệm thực tế.
+    </p>
+    <p>
+      Với tôi, lập trình không chỉ là một nghề mà còn là một nghệ thuật - nơi
+      tôi có thể biến những ý tưởng sáng tạo thành hiện thực. Tôi tin rằng công
+      nghệ có thể mang lại những thay đổi tích cực cho xã hội, và đó chính là
+      động lực thúc đẩy tôi không ngừng học hỏi và phát triển.
+    </p>
+  </section>
+
+  <!-- Education Section -->
+  <section class="education">
+    <h2>Hành trình học tập 🎓</h2>
+    <div class="education-item">
+      <h3>Đại học Công nghệ TP.HCM - Chuyên ngành Công nghệ phần mềm</h3>
+      <p><strong>Thời gian:</strong> 2022 - 2026 (Sinh viên năm 4)</p>
+      <p>
+        <strong>Thành tích:</strong> Điểm tích lũy 3.62/4.0, được công nhận là
+        sinh viên tiêu biểu trong nhiều học kỳ. Đây là nơi tôi được trang bị nền
+        tảng vững chắc về lập trình và phát triển phần mềm.
+      </p>
+      <p>
+        <strong>Điều tôi học được:</strong> Không chỉ là kiến thức chuyên môn,
+        mà còn là tư duy logic, kỹ năng giải quyết vấn đề và tinh thần làm việc
+        nhóm. Mỗi dự án, mỗi bài tập đều là cơ hội để tôi trưởng thành hơn.
+      </p>
     </div>
+  </section>
 
-    <div class="skills-section">
-      <h3>Kỹ năng</h3>
+  <!-- Skills Section -->
+  <section class="skills-section">
+    <h2>Kỹ năng & Công nghệ 💻</h2>
+    <div class="skills-grid">
       <div class="skill-category">
-        <h4>Kỹ năng công nghệ</h4>
+        <h3>Kỹ năng công nghệ</h3>
         <div class="skill-tags">
           <span class="skill-tag">HTML</span>
           <span class="skill-tag">CSS</span>
@@ -49,7 +92,7 @@
         </div>
       </div>
       <div class="skill-category">
-        <h4>Cơ sở dữ liệu</h4>
+        <h3>Cơ sở dữ liệu</h3>
         <div class="skill-tags">
           <span class="skill-tag">SQL Server</span>
           <span class="skill-tag">MySQL</span>
@@ -57,21 +100,21 @@
         </div>
       </div>
       <div class="skill-category">
-        <h4>DevOps & Quản lý mã nguồn</h4>
+        <h3>DevOps & Quản lý mã nguồn</h3>
         <div class="skill-tags">
           <span class="skill-tag">Docker</span>
           <span class="skill-tag">Git</span>
         </div>
       </div>
       <div class="skill-category">
-        <h4>Làm việc nhóm</h4>
+        <h3>Làm việc nhóm</h3>
         <div class="skill-tags">
           <span class="skill-tag">Trello</span>
           <span class="skill-tag">Notion</span>
         </div>
       </div>
       <div class="skill-category">
-        <h4>Khác</h4>
+        <h3>Khác</h3>
         <div class="skill-tags">
           <span class="skill-tag">Scratch</span>
           <span class="skill-tag">CodeKitten</span>
@@ -80,7 +123,7 @@
         </div>
       </div>
       <div class="skill-category">
-        <h4>Kỹ năng mềm</h4>
+        <h3>Kỹ năng mềm</h3>
         <ul>
           <li>Kinh nghiệm sử dụng, tự học và làm việc với AI</li>
           <li>Tiếng anh giao tiếp</li>
@@ -88,222 +131,398 @@
         </ul>
       </div>
     </div>
+  </section>
 
-    <div class="hobbies-section">
-      <h3>Sở thích</h3>
-      <div class="hobby-tags">
-        <span class="hobby-tag">Đá bóng</span>
-        <span class="hobby-tag">Cầu lông</span>
-        <span class="hobby-tag">Du lịch</span>
-        <span class="hobby-tag">Gym</span>
+  <!-- Volunteer Activities Section -->
+  <section class="volunteer-section">
+    <h2>Hoạt động thiện nguyện ❤️</h2>
+    <p class="section-intro">
+      Tôi tin rằng việc chia sẻ và giúp đỡ cộng đồng là một phần quan trọng
+      trong cuộc sống. Dưới đây là những hoạt động thiện nguyện ý nghĩa mà tôi
+      đã tham gia:
+    </p>
+
+    <div class="volunteer-grid">
+      <div class="volunteer-item">
+        <div class="volunteer-image" onclick="openModal('volunteer1')">
+          <img
+            src="{{ .Site.BaseURL }}images/volunteer/tet-gift-distribution.png"
+            alt="Phát quà vui Tết"
+          />
+          <div class="image-overlay">
+            <i class="fas fa-search-plus"></i>
+            <span>Click để xem ảnh</span>
+          </div>
+        </div>
+        <div class="volunteer-content">
+          <h3>🎁 Phát quà vui Tết</h3>
+          <p><strong>Thời gian:</strong> Tết Nguyên Đán 2024, 2025</p>
+          <p>
+            Tham gia các chương trình phát quà Tết cho các gia đình có hoàn cảnh
+            khó khăn, trẻ em mồ côi và người già neo đơn. Mang lại niềm vui và
+            hy vọng trong những ngày đầu năm mới.
+          </p>
+        </div>
+      </div>
+
+      <div class="volunteer-item">
+        <div class="volunteer-image" onclick="openModal('volunteer2')">
+          <img
+            src="{{ .Site.BaseURL }}images/volunteer/image.png"
+            alt="hiến máu"
+          />
+          <div class="image-overlay">
+            <i class="fas fa-search-plus"></i>
+            <span>Click để xem ảnh</span>
+          </div>
+        </div>
+        <div class="volunteer-content">
+          <h3>🌊 Hiến máu</h3>
+          <p><strong>Thời gian:</strong>2021-2025</p>
+          <p>
+            Tham gia các hoạt động hiến máu để cứu sống người khác. Mỗi lần hiến
+            máu, tôi cảm thấy rất vui và hài lòng vì đã giúp được người khác.
+          </p>
+        </div>
+      </div>
+
+      <div class="volunteer-item">
+        <div class="volunteer-image" onclick="openModal('volunteer3')">
+          <img
+            src="{{ .Site.BaseURL }}images/volunteer/hospital-gift.png"
+            alt="Phát quà ở Trại trẻ"
+          />
+          <div class="image-overlay">
+            <i class="fas fa-search-plus"></i>
+            <span>Click để xem ảnh</span>
+          </div>
+        </div>
+        <div class="volunteer-content">
+          <h3>🏥 Phát quà ở Trại trẻ</h3>
+          <p><strong>Thời gian:</strong> 2023 - 2024</p>
+          <p>
+            Hỗ trợ trẻ em tại Trại trẻ và phát quà và động viên tinh thần cho
+            những người đang điều trị. Mang lại niềm an ủi và hy vọng trong
+            những lúc khó khăn.
+          </p>
+        </div>
+      </div>
+
+      <div class="volunteer-item">
+        <div class="volunteer-image" onclick="openModal('volunteer4')">
+          <img
+            src="{{ .Site.BaseURL }}images/volunteer/food-preparation.png"
+            alt="Thăm trại trẻ mồ côi"
+          />
+          <div class="image-overlay">
+            <i class="fas fa-search-plus"></i>
+            <span>Click để xem ảnh</span>
+          </div>
+        </div>
+        <div class="volunteer-content">
+          <h3>👴👵 Thăm trại dưỡng lão & trại trẻ mồ côi</h3>
+          <p><strong>Thời gian:</strong> 2023 - 2024 (Định kỳ)</p>
+          <p>
+            Thường xuyên thăm hỏi và chăm sóc người già tại các trại dưỡng lão,
+            dạy học và vui chơi với trẻ em mồ côi. Mang lại tình yêu thương và
+            sự quan tâm cho những người cần được chăm sóc nhất.
+          </p>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="about-main">
-    <div class="career-objective">
-      <h2>Mục tiêu nghề nghiệp</h2>
-      <p>
-        Là sinh viên năm 4 ngành Công nghệ thông tin. Mong muốn làm việc trong
-        môi trường chuyên nghiệp, chủ động học hỏi và phát triển kỹ năng. Mục
-        tiêu trở thành lập trình viên Fullstack, sử dụng thành thạo các công
-        nghệ hiện đại. Sẵn sàng thích nghi và đóng góp cho sự phát triển của đội
-        nhóm.
-      </p>
+  <!-- Hobbies Section -->
+  <section class="hobbies-section">
+    <h2>Sở thích & Hoạt động cá nhân 🎯</h2>
+    <p class="section-intro">
+      Ngoài công việc và học tập, tôi cũng có những sở thích và hoạt động giúp
+      tôi cân bằng cuộc sống và phát triển bản thân:
+    </p>
+    <div class="hobby-tags">
+      <span class="hobby-tag">⚽ Đá bóng</span>
+      <span class="hobby-tag">🏸 Cầu lông</span>
+      <span class="hobby-tag">✈️ Du lịch</span>
+      <span class="hobby-tag">💪 Gym</span>
+      <span class="hobby-tag">📖 Đọc sách</span>
+      <span class="hobby-tag">🎵 Nghe nhạc</span>
+      <span class="hobby-tag">🎮 Game</span>
+      <span class="hobby-tag">☕ Cafe</span>
     </div>
+  </section>
 
-    <div class="education">
-      <h2>Học vấn</h2>
-      <div class="education-item">
-        <h3>
-          Ngành học: Công nghệ thông tin - Chuyên ngành: Công nghệ phần mềm
-          (2022 - 2026)
-        </h3>
-        <p><strong>Đại học:</strong> Đại học công nghệ thành phố Hồ Chí Minh</p>
+  <!-- Awards Section -->
+  <section class="awards">
+    <h2>Những dấu ấn đáng nhớ 🏆</h2>
+    <div class="awards-grid">
+      <div class="award-item">
+        <h3>🥉 Giải 3 HUTECH's Net Cracking Challenge - 2024</h3>
         <p>
-          <strong>Điểm tích luỹ:</strong> 3.62 trên hệ 4, được sinh viên tiêu
-          biểu ở nhiều học kỳ.
+          Cuộc thi về bảo mật mạng đã giúp tôi hiểu sâu hơn về cybersecurity và
+          tầm quan trọng của việc bảo vệ dữ liệu.
+        </p>
+      </div>
+      <div class="award-item">
+        <h3>🥉 Giải 3 IQ toán học cấp Khoa – 2024</h3>
+        <p>
+          Một trải nghiệm thú vị khi được thử thách tư duy logic và khả năng
+          giải quyết vấn đề dưới áp lực thời gian.
+        </p>
+      </div>
+      <div class="award-item">
+        <h3>🏅 Top 6 cuộc thi Tư duy đổi mới sáng tạo cấp Trường - 2023</h3>
+        <p>
+          Nơi tôi học được cách tư duy sáng tạo và đưa ra những giải pháp đột
+          phá cho các vấn đề thực tế.
+        </p>
+      </div>
+      <div class="award-item">
+        <h3>⭐ Sinh viên tiêu biểu nhiều kỳ học</h3>
+        <p>
+          Điều này không chỉ là thành tích mà còn là động lực để tôi tiếp tục nỗ
+          lực và phát triển bản thân.
         </p>
       </div>
     </div>
+  </section>
 
-    <div class="awards">
-      <h2>Danh hiệu và giải thưởng</h2>
-      <ul>
-        <li>Top 6 cuộc thi Tư duy đổi mới sáng tạo cấp Trường - 2023</li>
-        <li>Giải 3 IQ toán học cấp Khoa – 2024</li>
-        <li>Giải 3 HUTECH's Net Cracking Challenge - 2024</li>
-        <li>Sinh viên tiêu biểu trong các kỳ học</li>
-      </ul>
-    </div>
-
-    <div class="projects">
-      <h2>Dự án</h2>
+  <!-- Projects Section -->
+  <section class="projects">
+    <h2>Những dự án tôi đã làm 💻</h2>
+    <div class="projects-grid">
       <div class="project-item">
-        <h3>Đồ án website quản lý khảo thí (3/2025 - 5/2025)</h3>
-        <p><strong>Vị trí:</strong> Leader, Fullstack Developer</p>
+        <h3>🚀 Website quản lý khảo thí thông minh</h3>
         <p>
-          <strong>Mô tả:</strong> Website quản lý các vấn đề thi cử (sinh viên,
-          giám thị, lịch thi, sự cố, vi phạm, hỏi đáp tự động...).
+          <strong>Thời gian:</strong> 3/2025 - 5/2025 |
+          <strong>Vai trò:</strong> Team Leader & Fullstack Developer
         </p>
         <p>
-          <strong>Công nghệ:</strong> Html, css, js, có tích hợp ai tự train
-          (n8n)
+          <strong>Ý tưởng:</strong> Tạo ra một hệ thống quản lý thi cử toàn
+          diện, từ việc quản lý sinh viên, giám thị, lịch thi đến xử lý sự cố và
+          vi phạm. Điểm đặc biệt là tích hợp AI chatbot để hỗ trợ sinh viên
+          24/7.
         </p>
+        <p><strong>Công nghệ:</strong> HTML, CSS, JavaScript, n8n AI Agent</p>
         <p>
-          <strong>Thành tựu:</strong> Rèn luyện kỹ năng thiết kế hệ thống, xử lý
-          dữ liệu thực tế, biết thêm về n8n ai agent.
-        </p>
-      </div>
-
-      <div class="project-item">
-        <h3>
-          Dự án website quản lý logictics-Clean Architecture (C#/.NET) (5/2025 -
-          10/2025)
-        </h3>
-        <p><strong>Vị trí:</strong> fullstack, tester</p>
-        <p>
-          <strong>Mô tả:</strong> Phát triển hệ thống quản lý chuỗi cung ứng
-          logictics với mô hình Clean Architecture (C#/.NET).
-        </p>
-        <p>
-          <strong>Thành tựu:</strong> Trải nghiệm làm việc với đội nhóm theo
-          scrum, tiếp xúc ngôn ngữ & Frameworks lập trình mới, kinh nghiệm làm
-          dự án thực tế.
+          <strong>Học được gì:</strong> Đây là dự án đầu tiên tôi làm team
+          leader, học được cách phân chia công việc, quản lý tiến độ và làm việc
+          với AI. Cảm giác thật tuyệt khi thấy hệ thống hoạt động mượt mà!
         </p>
       </div>
 
       <div class="project-item">
-        <h3>Website bán thức ăn nhanh - WORDPRESS (8/2023 - 10/2023)</h3>
-        <p><strong>Vị trí:</strong> Fullstack</p>
+        <h3>🏗️ Hệ thống quản lý logistics với Clean Architecture</h3>
         <p>
-          <strong>Mô tả:</strong> Dự án khi tham gia cuộc thi My first Website
-          năm 2023 cấp khoa.
+          <strong>Thời gian:</strong> 5/2025 - 10/2025 |
+          <strong>Vai trò:</strong> Fullstack Developer & Tester
         </p>
-        <p><strong>Thành tựu:</strong> Biết nhiều plugin và các AI hữu ích.</p>
+        <p>
+          <strong>Ý tưởng:</strong> Xây dựng hệ thống quản lý chuỗi cung ứng
+          hoàn chỉnh, áp dụng mô hình Clean Architecture để code dễ bảo trì và
+          mở rộng.
+        </p>
+        <p><strong>Công nghệ:</strong> C#/.NET, Clean Architecture</p>
+        <p>
+          <strong>Học được gì:</strong> Lần đầu tiên làm việc theo mô hình
+          Scrum, học được cách viết code sạch, kiểm thử và làm việc nhóm hiệu
+          quả. Cũng là lần đầu tôi thực sự hiểu về kiến trúc phần mềm!
+        </p>
+      </div>
+
+      <div class="project-item">
+        <h3>🍕 Website bán thức ăn nhanh - Cuộc thi đầu tiên</h3>
+        <p>
+          <strong>Thời gian:</strong> 8/2023 - 10/2023 |
+          <strong>Vai trò:</strong> Fullstack Developer
+        </p>
+        <p>
+          <strong>Ý tưởng:</strong> Dự án đầu tiên khi tham gia cuộc thi "My
+          first Website" cấp khoa. Tạo ra một website bán thức ăn nhanh với giao
+          diện thân thiện.
+        </p>
+        <p><strong>Công nghệ:</strong> WordPress, các plugin AI</p>
+        <p>
+          <strong>Học được gì:</strong> Dự án này đã mở ra cho tôi thế giới của
+          web development và AI. Tôi bắt đầu hiểu rằng công nghệ có thể giúp
+          chúng ta làm mọi thứ dễ dàng hơn!
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certificates Section -->
+  <section class="certificates">
+    <h2>Hành trình chứng nhận 📜</h2>
+    <p class="section-intro">
+      Tôi luôn tin rằng việc học không bao giờ dừng lại. Dưới đây là những chứng
+      chỉ tôi đã đạt được trong quá trình phát triển bản thân:
+    </p>
+    <div class="certificates-grid">
+      <div class="certificate-item-text">
+        <h3>🎯 JavaScript Essentials 1 & 2 - Cisco (2025)</h3>
+        <p>
+          Hai khóa học quan trọng giúp tôi nắm vững JavaScript từ cơ bản đến
+          nâng cao. Đây là nền tảng cho mọi dự án web của tôi.
+        </p>
+      </div>
+      <div class="certificate-item-text">
+        <h3>🌐 Network Basics - Cisco NetAcad (2025)</h3>
+        <p>
+          Hiểu về mạng máy tính giúp tôi có cái nhìn tổng quan hơn về cách các
+          ứng dụng hoạt động trên internet.
+        </p>
+      </div>
+      <div class="certificate-item-text">
+        <h3>🗣️ TOEIC 500+ (2024)</h3>
+        <p>
+          Chứng chỉ tiếng Anh quan trọng, giúp tôi tiếp cận được nhiều tài liệu
+          và cộng đồng lập trình quốc tế.
+        </p>
+      </div>
+      <div class="certificate-item-text">
+        <h3>🤝 Kỹ năng giao tiếp & làm việc nhóm (2025)</h3>
+        <p>
+          Kỹ năng mềm không kém phần quan trọng, giúp tôi làm việc hiệu quả hơn
+          trong các dự án nhóm.
+        </p>
       </div>
     </div>
 
-    <div class="certificates">
-      <h2>Chứng chỉ</h2>
-      <ul>
-        <li>Kỹ năng giao tiếp & làm việc nhóm - 2025</li>
-        <li>TOEIC 500+ (Listening & Reading) - 10/2024</li>
-        <li>Cisco NetAcad- Network basic - 2025</li>
-        <li><strong>JavaScript Essentials 1 - Cisco - 09/2025</strong></li>
-        <li><strong>JavaScript Essentials 2 - Cisco - 10/2025 </strong></li>
-      </ul>
-
-      <div class="certificate-gallery">
-        <h3>Hình ảnh chứng chỉ</h3>
-        <div class="certificate-grid">
-          <div class="certificate-item">
-            <img
-              src="{{ .Site.BaseURL }}images/certificates/javascript-essentials.png"
-              alt="JavaScript Essentials 1 - Cisco"
-            />
-            <div class="certificate-overlay">
-              <h4>JavaScript Essentials 1</h4>
-              <p>Cisco NetAcad</p>
-              <span class="certificate-date">27/09/2025</span>
+    <div class="certificate-gallery">
+      <h3>Hình ảnh chứng chỉ</h3>
+      <div class="certificate-grid">
+        <div class="certificate-item" onclick="openModal('cert1')">
+          <img
+            src="{{ .Site.BaseURL }}images/certificates/javascript-essentials.png"
+            alt="JavaScript Essentials 1 - Cisco"
+          />
+          <div class="certificate-overlay">
+            <h4>JavaScript Essentials 1</h4>
+            <p>Cisco NetAcad</p>
+            <span class="certificate-date">27/09/2025</span>
+            <div class="click-hint">
+              <i class="fas fa-search-plus"></i>
+              <span>Click để xem</span>
             </div>
           </div>
+        </div>
 
-          <div class="certificate-item">
-            <img
-              src="{{ .Site.BaseURL }}images/certificates/networking-basics.png"
-              alt="Network basic"
-            />
-            <div class="certificate-overlay">
-              <h4>Network basic</h4>
-              <p>Cisco NetAcad</p>
-              <span class="certificate-date">2025</span>
+        <div class="certificate-item" onclick="openModal('cert2')">
+          <img
+            src="{{ .Site.BaseURL }}images/certificates/networking-basics.png"
+            alt="Network basic"
+          />
+          <div class="certificate-overlay">
+            <h4>Network basic</h4>
+            <p>Cisco NetAcad</p>
+            <span class="certificate-date">2025</span>
+            <div class="click-hint">
+              <i class="fas fa-search-plus"></i>
+              <span>Click để xem</span>
             </div>
           </div>
-          <div class="certificate-item">
-            <img
-              src="{{ .Site.BaseURL }}images/certificates/javascript-essentials-2.png"
-              alt="Network basic"
-            />
-            <div class="certificate-overlay">
-              <h4>Network basic</h4>
-              <p>Cisco NetAcad</p>
-              <span class="certificate-date">2025</span>
+        </div>
+        <div class="certificate-item" onclick="openModal('cert3')">
+          <img
+            src="{{ .Site.BaseURL }}images/certificates/javascript-essentials-2.png"
+            alt="JavaScript Essentials 2"
+          />
+          <div class="certificate-overlay">
+            <h4>JavaScript Essentials 2</h4>
+            <p>Cisco NetAcad</p>
+            <span class="certificate-date">2025</span>
+            <div class="click-hint">
+              <i class="fas fa-search-plus"></i>
+              <span>Click để xem</span>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </section>
+</div>
+
+<!-- Image Modal -->
+<div id="imageModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img id="modalImage" src="" alt="" />
+    <div id="modalCaption"></div>
   </div>
 </div>
 
 <style>
   .about-container {
-    display: grid;
-    grid-template-columns: 300px 1fr;
-    gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
   }
 
-  .about-sidebar {
-    background: linear-gradient(135deg, #374151 0%, #4b5563 100%);
+  /* Profile Section */
+  .profile-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
-    padding: 2rem;
-    border-radius: 15px;
+    padding: 3rem 2rem;
+    border-radius: 20px;
+    margin-bottom: 3rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   }
 
-  .profile-section {
-    text-align: center;
-    margin-bottom: 2rem;
+  .profile-content {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
   }
 
   .profile-image img {
-    width: 120px;
-    height: 120px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     object-fit: cover;
     border: 4px solid white;
-    margin-bottom: 1rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .profile-info {
+    flex: 1;
   }
 
   .profile-name {
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     font-weight: 700;
-    margin: 0;
+    margin: 0 0 1rem 0;
     color: white;
   }
 
-  .contact-info,
-  .skills-section,
-  .hobbies-section {
+  .personal-slogan {
+    font-style: italic;
+    font-size: 1.1rem;
     margin-bottom: 2rem;
+    color: #e5e7eb;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 10px;
+    border-left: 4px solid #fbbf24;
   }
 
-  .contact-info h3,
-  .skills-section h3,
-  .hobbies-section h3 {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    color: #f3f4f6;
-    border-bottom: 2px solid #6b46c1;
-    padding-bottom: 0.5rem;
+  .contact-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
   }
 
   .contact-item {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    margin-bottom: 0.75rem;
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 
   .contact-item i {
     width: 20px;
-    color: #6b46c1;
+    color: #fbbf24;
   }
 
   .contact-item a {
@@ -312,18 +531,76 @@
   }
 
   .contact-item a:hover {
-    color: #6b46c1;
+    color: #fbbf24;
+  }
+
+  /* Section Styles */
+  section {
+    background: white;
+    padding: 3rem 2rem;
+    border-radius: 15px;
+    margin-bottom: 3rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  section h2 {
+    color: #374151;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    border-bottom: 3px solid #667eea;
+    padding-bottom: 1rem;
+  }
+
+  .section-intro {
+    text-align: center;
+    color: #6b7280;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  /* Education Section */
+  .education-item {
+    background: #f8fafc;
+    padding: 2rem;
+    border-radius: 15px;
+    border-left: 5px solid #667eea;
+  }
+
+  .education-item h3 {
+    color: #374151;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .education-item p {
+    color: #6b7280;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  /* Skills Section */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
   }
 
   .skill-category {
-    margin-bottom: 1.5rem;
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 10px;
+    border-left: 4px solid #10b981;
   }
 
-  .skill-category h4 {
-    font-size: 1rem;
+  .skill-category h3 {
+    color: #374151;
+    font-size: 1.1rem;
     font-weight: 600;
-    margin-bottom: 0.75rem;
-    color: #e5e7eb;
+    margin-bottom: 1rem;
   }
 
   .skill-tags {
@@ -333,127 +610,242 @@
   }
 
   .skill-tag {
-    background: rgba(107, 70, 193, 0.2);
+    background: #667eea;
     color: white;
-    padding: 0.25rem 0.75rem;
-    border-radius: 15px;
-    font-size: 0.8rem;
-    border: 1px solid rgba(107, 70, 193, 0.3);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
   }
 
   .skill-category ul {
     list-style: none;
     padding: 0;
+    margin-top: 1rem;
   }
 
   .skill-category li {
+    color: #6b7280;
     margin-bottom: 0.5rem;
-    font-size: 0.9rem;
-    color: #d1d5db;
+    padding-left: 1rem;
+    position: relative;
   }
 
+  .skill-category li::before {
+    content: "✓";
+    color: #10b981;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+  }
+
+  /* Volunteer Section */
+  .volunteer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+
+  .volunteer-item {
+    background: #f0fdf4;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .volunteer-item:hover {
+    transform: translateY(-5px);
+  }
+
+  .volunteer-image {
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 10px 10px 0 0;
+  }
+
+  .volunteer-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .volunteer-image:hover img {
+    transform: scale(1.05);
+  }
+
+  .image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .volunteer-image:hover .image-overlay {
+    opacity: 1;
+  }
+
+  .image-overlay i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .image-overlay span {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .volunteer-content {
+    padding: 1.5rem;
+  }
+
+  .volunteer-content h3 {
+    color: #374151;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .volunteer-content p {
+    color: #6b7280;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Hobbies Section */
   .hobby-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 1rem;
+    justify-content: center;
   }
 
   .hobby-tag {
-    background: rgba(244, 114, 182, 0.2);
+    background: linear-gradient(135deg, #f59e0b, #d97706);
     color: white;
-    padding: 0.25rem 0.75rem;
-    border-radius: 15px;
-    font-size: 0.8rem;
-    border: 1px solid rgba(244, 114, 182, 0.3);
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: transform 0.3s ease;
   }
 
-  .about-main {
-    background: white;
+  .hobby-tag:hover {
+    transform: scale(1.05);
+  }
+
+  /* Awards Section */
+  .awards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .award-item {
+    background: #fffbeb;
     padding: 2rem;
     border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    border-left: 5px solid #f59e0b;
   }
 
-  .about-main h2 {
+  .award-item h3 {
     color: #374151;
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    border-bottom: 3px solid #6b46c1;
-    padding-bottom: 0.5rem;
-  }
-
-  .about-main h3 {
-    color: #4b5563;
     font-size: 1.2rem;
     font-weight: 600;
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
   }
 
-  .about-main p {
+  .award-item p {
+    color: #6b7280;
+    line-height: 1.6;
+  }
+
+  /* Projects Section */
+  .projects-grid {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .project-item {
+    background: #f8fafc;
+    padding: 2rem;
+    border-radius: 15px;
+    border-left: 5px solid #667eea;
+  }
+
+  .project-item h3 {
+    color: #374151;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .project-item p {
     color: #6b7280;
     line-height: 1.6;
     margin-bottom: 1rem;
   }
 
-  .career-objective,
-  .education,
-  .awards,
-  .projects,
-  .certificates {
-    margin-bottom: 2rem;
+  /* Certificates Section */
+  .certificates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
   }
 
-  .education-item,
-  .project-item {
-    background: #f9fafb;
-    padding: 1.5rem;
-    border-radius: 10px;
-    margin-bottom: 1.5rem;
-    border-left: 4px solid #6b46c1;
+  .certificate-item-text {
+    background: #f0fdf4;
+    padding: 2rem;
+    border-radius: 15px;
+    border-left: 5px solid #10b981;
   }
 
-  .about-main ul {
-    padding-left: 1.5rem;
-  }
-
-  .about-main li {
-    color: #6b7280;
-    margin-bottom: 0.5rem;
-    line-height: 1.5;
-  }
-
-  .about-main strong {
+  .certificate-item-text h3 {
     color: #374151;
+    font-size: 1.2rem;
     font-weight: 600;
+    margin-bottom: 1rem;
   }
 
-  /* Certificate Gallery */
-  .certificate-gallery {
-    margin-top: 2rem;
+  .certificate-item-text p {
+    color: #6b7280;
+    line-height: 1.6;
   }
 
   .certificate-gallery h3 {
-    color: #4b5563;
-    font-size: 1.1rem;
+    color: #374151;
+    font-size: 1.5rem;
     font-weight: 600;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+    text-align: center;
     border-bottom: 2px solid #e5e7eb;
-    padding-bottom: 0.5rem;
+    padding-bottom: 1rem;
   }
 
   .certificate-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
   }
 
   .certificate-item {
     position: relative;
-    border-radius: 10px;
+    border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     cursor: pointer;
     aspect-ratio: 4/3;
@@ -461,7 +853,7 @@
 
   .certificate-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
   }
 
   .certificate-item img {
@@ -482,7 +874,7 @@
     right: 0;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
     color: white;
-    padding: 1rem;
+    padding: 1.5rem;
     transform: translateY(100%);
     transition: transform 0.3s ease;
   }
@@ -492,58 +884,124 @@
   }
 
   .certificate-overlay h4 {
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 600;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.5rem;
     color: white;
   }
 
   .certificate-overlay p {
-    font-size: 0.8rem;
-    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
     color: rgba(255, 255, 255, 0.9);
   }
 
   .certificate-date {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     color: rgba(255, 255, 255, 0.7);
     font-weight: 500;
   }
 
-  /* Dark mode styles */
-  [data-theme="dark"] .about-sidebar {
-    background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+  /* Image Modal */
+  .modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    z-index: 1000;
   }
 
-  [data-theme="dark"] .about-main {
+  .modal.show {
+    display: flex;
+  }
+
+  /* Dark Mode for Modal */
+  [data-theme="dark"] .modal {
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  [data-theme="dark"] .modal-content {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+  }
+
+  [data-theme="dark"] .modal-caption {
+    color: var(--text-primary);
+    background: var(--bg-primary);
+  }
+
+  [data-theme="dark"] .modal-close {
+    color: var(--text-primary);
+  }
+
+  [data-theme="dark"] .modal-close:hover {
+    color: var(--secondary);
+  }
+
+  .modal-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    background: #111827;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  }
+
+  .modal-content img {
+    max-width: 85vw;
+    max-height: 75vh;
+    display: block;
+    border-radius: 8px;
+  }
+
+  .modal .close {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  #modalCaption {
+    color: #e5e7eb;
+    text-align: center;
+    margin-top: 0.75rem;
+    font-size: 0.95rem;
+  }
+
+  /* Dark mode styles */
+  [data-theme="dark"] section {
     background: var(--bg-secondary);
     color: var(--text-primary);
   }
 
-  [data-theme="dark"] .about-main h2 {
+  [data-theme="dark"] section h2 {
     color: var(--text-primary);
   }
 
-  [data-theme="dark"] .about-main h3 {
-    color: var(--text-primary);
-  }
-
-  [data-theme="dark"] .about-main p {
+  [data-theme="dark"] .section-intro {
     color: var(--text-secondary);
-  }
-
-  [data-theme="dark"] .about-main li {
-    color: var(--text-secondary);
-  }
-
-  [data-theme="dark"] .about-main strong {
-    color: var(--text-primary);
   }
 
   [data-theme="dark"] .education-item,
-  [data-theme="dark"] .project-item {
+  [data-theme="dark"] .project-item,
+  [data-theme="dark"] .award-item,
+  [data-theme="dark"] .certificate-item-text {
     background: var(--bg-primary);
-    border-left-color: var(--primary);
+  }
+
+  [data-theme="dark"] .skill-category {
+    background: var(--bg-primary);
+  }
+
+  [data-theme="dark"] .volunteer-item {
+    background: rgba(16, 185, 129, 0.1);
   }
 
   [data-theme="dark"] .certificate-gallery h3 {
@@ -551,29 +1009,98 @@
     border-bottom-color: var(--border-color);
   }
 
-  [data-theme="dark"] .certificate-item {
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-  }
-
-  [data-theme="dark"] .certificate-item:hover {
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-  }
-
   /* Responsive */
   @media (max-width: 768px) {
     .about-container {
-      grid-template-columns: 1fr;
-      gap: 1rem;
       padding: 1rem;
     }
 
-    .about-sidebar {
-      order: 1;
+    .profile-content {
+      flex-direction: column;
+      text-align: center;
     }
 
-    .about-main {
-      order: 2;
+    .profile-name {
+      font-size: 2rem;
+    }
+
+    .contact-info {
+      grid-template-columns: 1fr;
+    }
+
+    .skills-grid,
+    .volunteer-grid,
+    .awards-grid,
+    .certificates-grid {
+      grid-template-columns: 1fr;
+    }
+
+    section {
+      padding: 2rem 1rem;
     }
   }
 </style>
+<script>
+  // Map between IDs and sources/captions
+  const BASE = "{{ .Site.BaseURL }}";
+  const imageMap = {
+    volunteer1: {
+      src: `${BASE}images/volunteer/tet-gift-distribution.png`,
+      caption: "Phát quà vui Tết",
+    },
+    volunteer2: {
+      src: `${BASE}images/volunteer/image.png`,
+      caption: "Hiến máu",
+    },
+    volunteer3: {
+      src: `${BASE}images/volunteer/hospital-gift.png`,
+      caption: "Phát quà ở Trại trẻ",
+    },
+    volunteer4: {
+      src: `${BASE}images/volunteer/food-preparation.png`,
+      caption: "Thăm trại dưỡng lão & trại trẻ mồ côi",
+    },
+    cert1: {
+      src: `${BASE}images/certificates/javascript-essentials.png`,
+      caption: "JavaScript Essentials 1 - Cisco",
+    },
+    cert2: {
+      src: `${BASE}images/certificates/networking-basics.png`,
+      caption: "Network Basics - Cisco NetAcad",
+    },
+    cert3: {
+      src: `${BASE}images/certificates/javascript-essentials-2.png`,
+      caption: "JavaScript Essentials 2 - Cisco",
+    },
+  };
+
+  function openModal(key) {
+    const modal = document.getElementById("imageModal");
+    const img = document.getElementById("modalImage");
+    const caption = document.getElementById("modalCaption");
+    const data = imageMap[key];
+    if (!data) return;
+    img.src = data.src;
+    caption.textContent = data.caption;
+    modal.classList.add("show");
+  }
+
+  function closeModal() {
+    const modal = document.getElementById("imageModal");
+    const img = document.getElementById("modalImage");
+    modal.classList.remove("show");
+    img.src = "";
+  }
+
+  // Close on backdrop click or ESC
+  (function attachModalHandlers() {
+    const modal = document.getElementById("imageModal");
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeModal();
+    });
+  })();
+</script>
 {{ end }}

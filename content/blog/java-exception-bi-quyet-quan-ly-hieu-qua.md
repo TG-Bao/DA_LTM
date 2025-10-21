@@ -28,7 +28,7 @@ public class UserNotFoundException extends RuntimeException {
     public UserNotFoundException(String message) {
         super(message);
     }
-    
+
     public UserNotFoundException(String message, Throwable cause) {
         super(message, cause);
     }
@@ -37,12 +37,12 @@ public class UserNotFoundException extends RuntimeException {
 // Exception với thông tin bổ sung
 public class ValidationException extends RuntimeException {
     private final List<String> errors;
-    
+
     public ValidationException(String message, List<String> errors) {
         super(message);
         this.errors = Collections.unmodifiableList(new ArrayList<>(errors));
     }
-    
+
     public List<String> getErrors() {
         return errors;
     }
@@ -59,15 +59,15 @@ public User findUserById(Long id) {
 
 public void validateUser(User user) {
     List<String> errors = new ArrayList<>();
-    
+
     if (user.getName() == null || user.getName().isEmpty()) {
         errors.add("Tên không được để trống");
     }
-    
+
     if (user.getEmail() == null || !user.getEmail().contains("@")) {
         errors.add("Email không hợp lệ");
     }
-    
+
     if (!errors.isEmpty()) {
         throw new ValidationException("Dữ liệu user không hợp lệ", errors);
     }
@@ -131,15 +131,15 @@ try (
 ```java
 public class DatabaseConnection implements AutoCloseable {
     private final Connection connection;
-    
+
     public DatabaseConnection(String url) throws SQLException {
         this.connection = DriverManager.getConnection(url);
     }
-    
+
     public Connection getConnection() {
         return connection;
     }
-    
+
     @Override
     public void close() throws Exception {
         if (connection != null && !connection.isClosed()) {
@@ -289,7 +289,7 @@ public void processFile(String filePath) {
     if (filePath == null || filePath.isEmpty()) {
         throw new IllegalArgumentException("File path không được để trống");
     }
-    
+
     // Tiếp tục xử lý với đầu vào hợp lệ
 }
 ```
@@ -309,6 +309,125 @@ userService.findUserById(123)
     .orElse("Unknown User");
 ```
 
+## Bản đồ hệ thống ngoại lệ (Taxonomy) và nguyên tắc
+
+### Checked vs Unchecked vs Error
+
+- Checked Exception (extends `Exception`, không phải `RuntimeException`): buộc khai báo/handle tại compile-time. Thường cho điều kiện có thể phục hồi (I/O, network, file...).
+- Unchecked Exception (extends `RuntimeException`): lỗi lập trình/tiền điều kiện (null, illegal state/arg), không bắt buộc phải catch.
+- Error (extends `Error`): lỗi môi trường/JVM (OutOfMemoryError, StackOverflowError) — không catch trừ khi để log và dừng hệ thống an toàn.
+
+Nguyên tắc sử dụng:
+
+- Điều kiện có thể dự đoán và xử lý được ở call-site → Checked.
+- Vi phạm hợp đồng API/tiền điều kiện, bug logic → Unchecked.
+- Tuyệt đối không ném/catch `Throwable` hoặc `Error` để “tiếp tục chạy”.
+
+### Vì sao tồn tại Checked và khi nào chọn Unchecked?
+
+- Checked giúp “ép” luồng xử lý lỗi được nghĩ tới, phù hợp adapter tầng thấp (I/O, file...).
+- Unchecked giúp API sạch, không “ô nhiễm” chữ ký phương thức. Dùng cho domain/business hoặc validation tiền điều kiện.
+- Một guideline thực tế: public API hướng người dùng thư viện → ưu tiên Unchecked; lớp biên I/O → Checked.
+
+### Error vs Exception
+
+- Exception: có thể (hoặc nên) xử lý để tiếp tục vận hành logic phù hợp.
+- Error: trạng thái hệ thống không đáng tin; chỉ log và dừng/thoái lui an toàn.
+
+## Anti-patterns cần tránh
+
+- Nuốt ngoại lệ (swallow) hoặc chỉ `printStackTrace()`.
+- Bọc exception mà mất nguyên nhân gốc (không truyền `cause`).
+- Throw `Exception`/`RuntimeException` chung chung, message mơ hồ.
+- Dùng exception cho luồng điều khiển bình thường (control flow).
+- Lạm dụng checked khiến call-site bừa bộn; hoặc lạm dụng unchecked khiến thiếu kiểm soát.
+
+## Mapping Exception ↔ HTTP Status (REST)
+
+- ValidationException → 400 Bad Request.
+- AuthenticationException → 401 Unauthorized.
+- AuthorizationException → 403 Forbidden.
+- ResourceNotFoundException → 404 Not Found.
+- ConflictException (trùng, trạng thái) → 409 Conflict.
+- TooManyRequestsException/RateLimit → 429 Too Many Requests.
+- BusinessException (không khớp quy tắc) → 422 Unprocessable Entity.
+- Technical/Unexpected → 500 Internal Server Error.
+
+Trong Spring, map bằng `@ControllerAdvice` + `@ExceptionHandler` để thống nhất phản hồi.
+
+## Retry, Idempotency và Backoff
+
+Lý thuyết:
+
+- Retry chỉ cho lỗi tạm thời (transient) như timeout, 5xx; không retry cho 4xx.
+- Idempotency đảm bảo retry không gây tác dụng phụ (PUT/GET thường idempotent; POST có thể idempotent qua idempotency key).
+- Exponential backoff + jitter tránh “dội bão” vào dịch vụ.
+
+```java
+// Minh hoạ retry có backoff + jitter
+T result = Retry.decorateSupplier(
+    Retry.of("io-call", RetryConfig.<T>custom()
+        .maxAttempts(4)
+        .waitDuration(Duration.ofMillis(200)) // ví dụ, có thể thay bằng backoff hàm
+        .retryOnException(ex -> isTransient(ex))
+        .build()),
+    () -> remoteCall()
+).get();
+
+boolean isTransient(Throwable ex) {
+    return ex instanceof SocketTimeoutException
+        || ex instanceof ConnectException
+        || (ex instanceof HttpStatusException h && h.status() >= 500);
+}
+```
+
+Gợi ý: có thể dùng Resilience4j/Retry4j hoặc tự cài đặt backoff với jitter ngẫu nhiên.
+
+## Giao dịch (Transactions) và Exception
+
+- `@Transactional` mặc định rollback với unchecked; checked không rollback trừ khi cấu hình `rollbackFor`.
+- Bao gói business logic cùng transaction ranh giới rõ ràng; tránh logic dài chặn I/O trong transaction.
+- Tránh catch rồi “nuốt” trong service annotated `@Transactional` vì có thể chặn cơ chế rollback.
+
+```java
+@Transactional(rollbackFor = {SQLException.class, BusinessException.class})
+public void placeOrder(OrderRequest req) {
+    validate(req); // có thể ném ValidationException (unchecked) → rollback
+    reserveInventory(req);
+    chargePayment(req);
+    saveOrder(req);
+}
+```
+
+## Kiểm thử Exception và API
+
+### Unit test service
+
+```java
+@Test
+void shouldThrowWhenEmailInvalid() {
+    var req = new UserRequest("John", "bad");
+    assertThrows(ValidationException.class, () -> service.create(req));
+}
+```
+
+### Test REST mapping
+
+```java
+@Test
+void createUser_validationError_returns400() throws Exception {
+    mockMvc.perform(post("/users").content("{}")
+            .contentType(MediaType.APPLICATION_JSON))
+        .andExpect(status().isBadRequest());
+}
+```
+
+### Nguyên tắc test
+
+- Kiểm tra thông điệp/field lỗi có ý nghĩa.
+- Mô phỏng lỗi hạ tầng (DB down, timeout) và xác nhận retry/fallback đúng.
+- Kiểm tra transaction rollback với các exception khác nhau.
+
 ## Kết luận
 
-Quản lý exception hiệu quả là một kỹ năng quan trọng giúp tạo ra ứng dụng Java ổn định và dễ bảo trì. Bằng cách tạo custom exception phù hợp, sử dụng try-with-resources, ghi log đầy đủ và tránh nuốt chửng exception, bạn sẽ xây dựng được hệ thống xử lý lỗi mạnh mẽ và chuyên nghiệp. Hãy nhớ rằng, mục tiêu của việc xử lý exception không chỉ là ngăn chặn ứng dụng crash mà còn là cung cấp thông tin hữu ích để debug và khắc phục vấn đề.
+Quản lý exception hiệu quả là một kỹ năng quan trọng giúp tạo ra ứng dụng Java ổn định và dễ bảo trì. Bằng cách tạo custom exception phù hợp, sử dụng try-with-resources, ghi log đầy đủ và tránh nuốt chửng exception, bạn sẽ xây dựng được hệ thống xử lý lỗi mạnh mẽ và chuyên nghiệp. Bổ sung thêm taxonomy rõ ràng, mapping HTTP, chiến lược retry/idempotency, và quy tắc transaction sẽ giúp hệ thống của bạn bền vững hơn trong môi trường production.
